@@ -1,0 +1,15 @@
+# Media #
+######################
+screencast.mp4
+screencast.ogv
+screencast.webm
+
+# Not ready yet #
+######################
+app/backbone-indexeddb.js
+app/backbone-localstorage.js
+app/history.js
+app/jquery.js
+app/jsonschema-b4.js
+app/schema.js
+app/storage.js
