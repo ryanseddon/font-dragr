@@ -1,0 +1,64 @@
+/* Pink Walrus:	http://www.colourlovers.com/palette/128467/Pink_Walrus */
+.pink-walrus header {
+	border-bottom-color: #8F8F8F;
+	background: #25020F;
+}
+	.pink-walrus header .container .logo {
+		background-color: #FF1168;
+		color: #ECECEC;
+	}
+	.pink-walrus header .container h1, 
+	.pink-walrus header .container h2, 
+	.pink-walrus header .container ul[role="tablist"] .active a,
+	.pink-walrus section[role="banner"] h1 {
+		color: #ECECEC;
+	}
+		.pink-walrus header .container ul[role="tablist"] li {
+			background: #ECECEC;
+		}
+			.pink-walrus header .container ul[role="tablist"] a {
+				color: #8F8F8F;
+			}
+			.pink-walrus header .container ul[role="tablist"] .active,
+			.pink-walrus section[role="banner"] {
+				background: #8F8F8F;
+			}
+
+/* Tool Box Ready:	http://www.colourlovers.com/palette/1412854/Tool_Box_Ready */
+.toolbox-ready {
+	background: #394C5F;
+	color: #ECECEC;
+}
+.toolbox-ready header {
+	border-bottom-color: #BB5316;
+	background: #394C5F url(gr_pattern.gif) 0 0 repeat;
+}
+	.toolbox-ready header .container .logo {
+		background-color: #BB5316;
+		color: #ECECEC;
+		text-shadow: 1px 1px 3px #394C5F;
+	}
+	.toolbox-ready header .container h1, 
+	.toolbox-ready header .container h2, 
+	.toolbox-ready header .container ul[role="tablist"] .active a,
+	.toolbox-ready section[role="banner"] h1,
+	.toolbox-ready #content h1 	{
+		color: #ECECEC;
+	}
+		.toolbox-ready header .container ul[role="tablist"] li {
+			background: #ECECEC;
+		}
+			.toolbox-ready header .container ul[role="tablist"] a {
+				color: #8F8F8F;
+			}
+			.toolbox-ready header .container ul[role="tablist"] .active,
+			.toolbox-ready section[role="banner"] {
+				background: #BB5316;
+			}
+.toolbox-ready footer[role="contentinfo"] {
+	background: none;
+}
+	.toolbox-ready footer[role="contentinfo"] .grid {
+		border-top: 1px solid #28889F;
+		padding: 10px 0;
+	}
