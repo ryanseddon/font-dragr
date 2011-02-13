@@ -21,8 +21,6 @@ FD.font = Backbone.Model.extend({
 FD.fonts = Backbone.Collection.extend({ 
 	model: FD.font,
 	
-	localStorage: new Store("fd-fonts"),
-	
 	initialize: function ( attributes ) {
 		
 	}
