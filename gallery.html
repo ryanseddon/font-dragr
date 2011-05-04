@@ -1,0 +1,241 @@
+<!DOCTYPE HTML>
+
+<!--[if lt IE 7 ]> <html lang="en" class="ie6"> <![endif]--> 
+<!--[if IE 7 ]>    <html lang="en" class="ie7"> <![endif]--> 
+<!--[if IE 8 ]>    <html lang="en" class="ie8"> <![endif]--> 
+<!--[if (gte IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>font dragr | Drag and drop font testing</title>
+  
+  <meta name="description" content="A revolutionary way to test custom fonts in the browser. No coding, no uploading, just drag and drop">
+  <meta name="author" content="Ryan Seddon">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  <link rel="stylesheet" href="_styles_2.css">
+  <link rel="stylesheet" href="colour_palettes.css">
+  <link rel="stylesheet" href="wfs.css">
+  
+  <!--[if lte IE 8]>
+		<script type="text/javascript">
+			// For discussion and comments, see: http://remysharp.com/2009/01/07/html5-enabling-script/
+			(function(){var e = "footer,header,hgroup,section".split(','),i=e.length;while(i--){document.createElement(e[i]);}})();
+		</script>
+	<![endif]-->
+<head>
+
+<body class="toolbox-ready">
+	<div id="maincontainer">
+		<header class="clearfix">
+			<div class="container">
+				<div class="logo">fd</div>
+				
+				<hgroup role="heading">
+					<h1>font dragr</h1>
+					<h2>Drag and drop font testing</h2>
+				</hgroup>
+				
+				<nav>
+					<ul role="tablist">
+						<li><a href="/">Home</a></li>
+						<li><a href="editor.html">Editor</a></li>
+						<li class="active"><a href="gallery.html">Gallery</a></li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+		
+		<div id="subcontainer">
+			<section id="banner" role="banner" class="clearfix">
+				<div class="container grid">
+					<h1 class="colx8" id="fontname">VomZom</h1>
+					<aside class="colx4 item" id="dropzone">
+						<ul id="fonts"></ul>
+					</aside>
+				</div>
+			</section>
+			
+			<div id="content" class="grid gallery clearfix">
+				<div id="gallery">
+					<!--<div class="colx4 item alpha">
+						<h2>
+							VomZom
+							<div tabindex="0" class="info01">
+								<ul>
+									<li class="title"><strong style="font-family: 'VomZom';">VomZom</strong></li>
+									<li><strong>Size:</strong> 15kb </li>
+									<li><strong>Author:</strong> <a href="http://defaulterror.com/typo.htm">D.Rock</a> </li>
+									<li><strong>License:</strong> <a href="http://defaulterror.com/typo.htm#Font%20License%20Information">Free for personal and commercial use.</a></li>
+								</ul>
+							</div>
+						</h2>
+						<p class="preview">AaBbCcDd</p>
+						<a href="#" class="button">Load VomZom</a>
+					</div>
+					<div class="colx4 item">
+						<h2>
+							Strato
+							<div tabindex="0" class="info01">
+								<ul>
+									<li class="title"><strong style="font-family: 'Strato';">Strato</strong></li>
+									<li><strong>Size:</strong> 58kb </li>
+									<li><strong>Author:</strong> <a href="http://cargocollective.com/Sozoo">Patrick Carpentier</a> </li>
+									<li><strong>License:</strong> <a href="http://scripts.sil.org/OFL">SIL Open Font License, 1.1</a></li>
+								</ul>
+							</div>
+						</h2>
+						<p class="preview">AaBbCcDd</p>
+						<a href="#" class="button">Load Strato</a>
+					</div>
+					<div class="colx4 item omega">
+						<h2>
+							Reenie Beenie
+							<div tabindex="0" class="info01">
+								<ul>
+									<li class="title"><strong style="font-family: 'Reenie Beenie';">Reenie Beenie</strong></li>
+									<li><strong>Size:</strong> 148kb </li>
+									<li><strong>Author:</strong> <a href="http://en.wikipedia.org/wiki/James_Grieshaber">James Grieshaber</a> </li>
+									<li><strong>License:</strong> <a href="http://scripts.sil.org/OFL">SIL Open Font License, 1.1</a></li>
+								</ul>
+							</div>
+						</h2>
+						<p class="preview">AaBbCcDd</p>
+						<a href="#" class="button">Load Reenie Beenie</a>
+					</div>
+					
+					<div class="colx4 item alpha">
+						<h2>
+							Tangerine
+							<div tabindex="0" class="info01">
+								<ul>
+									<li class="title"><strong style="font-family: 'Tangerine';">Tangerine</strong></li>
+									<li><strong>Size:</strong> 61kb </li>
+									<li><strong>Author:</strong> <a href="#">Toshi Omagari</a> </li>
+									<li><strong>License:</strong> <a href="http://scripts.sil.org/OFL">SIL Open Font License, 1.1</a></li>
+								</ul>
+							</div>
+						</h2>
+						<p class="preview">AaBbCcDd</p>
+						<a href="#" class="button">Load Tangerine</a>
+					</div>
+					<div class="colx4 item">
+						<h2>
+							Vollkorn
+							<div tabindex="0" class="info01">
+								<ul>
+									<li class="title"><strong style="font-family: 'Vollkorn';">Vollkorn</strong></li>
+									<li><strong>Size:</strong> 62kb </li>
+									<li><strong>Author:</strong> <a href="http://friedrichalthausen.de/">Friedrich Althausen</a> </li>
+									<li><strong>License:</strong> <a href="http://scripts.sil.org/OFL">SIL Open Font License, 1.1</a></li>
+								</ul>
+							</div>
+						</h2>
+						<p class="preview">AaBbCcDd</p>
+						<a href="#" class="button">Load Vollkorn</a>
+					</div>
+					<div class="colx4 item omega">
+						<h2>
+							Lobster
+							<div tabindex="0" class="info01">
+								<ul>
+									<li class="title"><strong style="font-family: 'Lobster';">Lobster</strong></li>
+									<li><strong>Size:</strong> 52kb </li>
+									<li><strong>Author:</strong> <a href="http://www.impallari.com/">Pablo Impallari</a> </li>
+									<li><strong>License:</strong> <a href="http://scripts.sil.org/OFL">SIL Open Font License, 1.1</a></li>
+								</ul>
+							</div>
+						</h2>
+						<p class="preview">AaBbCcDd</p>
+						<a href="#" class="button">Load Lobster</a>
+					</div>
+					
+					<div class="colx4 item alpha">
+						<h2>
+							Null
+							<div tabindex="0" class="info01">
+								<ul>
+									<li class="title"><strong style="font-family: 'Null';">Null</strong></li>
+									<li><strong>Size:</strong> 15kb </li>
+									<li><strong>Author:</strong> <a href="http://defaulterror.com/typo.htm">D.Rock</a> </li>
+									<li><strong>License:</strong> <a href="http://defaulterror.com/typo.htm#Font%20License%20Information">Free for personal and commercial use.</a></li>
+								</ul>
+							</div>
+						</h2>
+						<p class="preview">AaBbCcDd</p>
+						<a href="#" class="button">Load Null</a>
+					</div>
+					<div class="colx4 item">
+						<h2>
+							Ubuntu
+							<div tabindex="0" class="info01">
+								<ul>
+									<li class="title"><strong style="font-family: 'Ubuntu';">Ubuntu</strong></li>
+									<li><strong>Size:</strong> 24kb </li>
+									<li><strong>Author:</strong> <a href="http://www.daltonmaag.com/">Dalton Maag Ltd</a> </li>
+									<li><strong>License:</strong> <a href="http://font.ubuntu.com/ufl/ubuntu-font-licence-1.0.txt">UBUNTU FONT LICENSE Version 1.0</a></li>
+								</ul>
+							</div>
+						</h2>
+						<p class="preview">AaBbCcDd</p>
+						<a href="#" class="button">Load Ubuntu</a>
+					</div>
+					<div class="colx4 item">
+						<h2>
+							Gamaliel
+							<div tabindex="0" class="info01">
+								<ul>
+									<li class="title"><strong style="font-family: 'Gamaliel';">Gamaliel</strong></li>
+									<li><strong>Size:</strong> 43kb </li>
+									<li><strong>Author:</strong> <a href="#">Rafael Ferran</a> </li>
+									<li><strong>License:</strong> <a href="http://scripts.sil.org/OFL">SIL Open Font License, 1.1</a></li>
+								</ul>
+							</div>
+						</h2>
+						<p class="preview">AaBbCcDd</p>
+						<a href="#" class="button">Load Ubuntu</a>
+					</div>-->
+				</div>
+			</div>
+		</div>
+		
+		<footer role="contentinfo">
+			<div class="grid clearfix">
+				<p class="colx4 item">Copyright &copy; 2011 <a href="http://www.thecssninja.com/">Ryan Seddon</a></p>
+				<p class="colx8">Licensed under the <a href="license.txt">MIT</a> | <a href="http://github.com/ryanseddon/font-dragr">hack</a> | <a href="license.txt">donate</a> | <a href="license.txt">contact</a> | <a href="http://defaulterror.com/typo.htm" title="The VomZom font used on this site was obtained from here">VomZom</a></p>
+			</div>
+		</footer>
+	</div>
+	
+	<!-- scripts concatenated and minified via ant build script-->
+	<script type="text/javascript" src="app/jquery.js"></script>
+	<script type="text/javascript" src="app/qwery.js"></script>
+	<script type="text/javascript" src="app/bean.js"></script>
+	<script type="text/javascript" src="app/underscore.js"></script>
+	<script type="text/javascript" src="app/backbone.js"></script>
+	<script type="text/javascript" src="app/backbone-history.js"></script>
+	<script type="text/javascript" src="app/backbone-delegate.js"></script>
+	<script type="text/javascript" src="_javascript.js"></script>
+	<script type="text/javascript" src="app/_controller.js"></script>
+	<script type="text/javascript" src="app/_models-collections.js"></script>
+	<script type="text/javascript" src="app/_views.js"></script>
+	<!-- end concatenated and minified scripts-->
+	
+	<!-- change the UA-4638292-2 to be your site's ID 
+	<script>
+		var _gaq = [['_setAccount', 'UA-4638292-2'], ['_trackPageview']];
+		(function(d, t) {
+		var g = d.createElement(t),
+			s = d.getElementsByTagName(t)[0];
+		g.async = true;
+		g.src = ('https:' == location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		s.parentNode.insertBefore(g, s);
+		})(document, 'script');
+	</script>-->
+</body>
+</html>

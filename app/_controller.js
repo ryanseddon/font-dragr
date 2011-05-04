@@ -1,21 +1,41 @@
 FD.AppController = Backbone.Controller.extend({
 
 	routes: {
-		"": "home",
-		"editor": "editor",
-		"gallery/:font/:weight": "gallery"
+		"/": "home",
+		"editor.html": "editor",
+		"gallery.html": "gallery"
 	},
 
 	home: function() {
-		console.log(this);
+		this.routeHandler("home.tmpl");
 	},
 	
 	editor: function() {
-		console.log("editor");
+		this.routeHandler("editor.tmpl");
 	},
 
 	gallery: function(font, weight) {
-		console.log(font);
+		this.routeHandler("gallery.tmpl");
+	},
+	
+	routeHandler: function(tmpl) {
+		var localstorage = window.localStorage,
+			cacheBuster = "2.0.1",
+			localData = localstorage.getItem("fd-"+tmpl),
+			busta = localstorage.getItem("fd-version") === cacheBuster;
+			
+		if(localstorage && localData && busta) {
+			document.getElementById("subcontainer").innerHTML = localData;
+			FD.fontListView.render();
+		} else {
+			$.get("app/"+tmpl,function(e){
+				document.getElementById("subcontainer").innerHTML = e;
+				localstorage.setItem("fd-"+tmpl,e);
+				localstorage.setItem("fd-version",cacheBuster);
+				FD.fontListView.render();
+				//FD.fontGalleryView.initialize();
+			},"text");
+		}
 	}
 
 });

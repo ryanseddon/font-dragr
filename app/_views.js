@@ -1,4 +1,4 @@
-FD.fontView = Backbone.View.extend({
+FD.FontView = Backbone.View.extend({
 	initialize: function () {
 		var fonts = document.getElementById("fonts");
 		
@@ -35,13 +35,13 @@ FD.fontView = Backbone.View.extend({
 			elem = this.el,
 			model = this.model;
 		
-		FD.App.resetActiveState(model.get("name"));
+		FD.fontListView.resetActiveState(model.get("name"));
 		
 		model.set({active: true});
 		
 		elem.className = "active";
 		
-		FD.AppEditor.updateFont(model.get("name"));
+		FD.fontEditorView.updateFont(model.get("name"));
 	},
 	
 	unactivateFont: function () {
@@ -60,18 +60,16 @@ FD.fontView = Backbone.View.extend({
 	}
 });
 
-FD.fontListView = Backbone.View.extend({
+FD.FontListView = Backbone.View.extend({
 	id: document.getElementById("fonts"),
 	
 	tagName: "ul",
 	
 	initialize: function () {
-		var dnd = document;
-		
 		_.bindAll(this, 'addFont', 'render', 'handleDrop', 'preventActions');
 		
-		FD.fontCollection.bind("add", this.addFont);
-		FD.fontCollection.add({
+		FD.fonts.bind("add", this.addFont);
+		FD.fonts.add({
 			name: "VomZom",
 			size: "15kb",
 			author: "D.Rock",
@@ -80,26 +78,34 @@ FD.fontListView = Backbone.View.extend({
 			licenseurl: "http://defaulterror.com/typo.htm#Font%20License%20Information"
 		});
 		
-		dnd.addEventListener("drop",this.handleDrop,false);
-		dnd.addEventListener("dragenter",this.preventActions,false);
-		dnd.addEventListener("dragover",this.preventActions,false);
+		bean.add(document, {
+		  drop: this.handleDrop,
+		  dragenter: this.preventActions,
+		  dragover: this.preventActions
+		});
 	},	
 	
 	addFont: function (font) {
-		var fontView = new FD.fontView({model: font}),
+		var fontView = new FD.FontView({model: font}),
 			parent = document.getElementById("fonts");
 		
 		parent.appendChild(fontView.render().el);
 	},
 	
 	addAllFonts: function() {
-		_.each(FD.fontCollection.models, function(model, i, list) {
+		_.each(FD.fonts.models, function(model, i, list) {
 			this.addFont(model);
 		});
 	},
 	
+	render: function() {
+		_.each(FD.fonts.models, function(model, i, list) {
+			FD.fontListView.addFont(model);
+		});
+	},
+	
 	resetActiveState: function(name) {
-		_.each(FD.fontCollection.models, function(model, i, list) {
+		_.each(FD.fonts.models, function(model, i, list) {
 			if(model.get("name") !== name) {
 				model.set({active:false});
 			}
@@ -107,9 +113,8 @@ FD.fontListView = Backbone.View.extend({
 	},
 	
 	handleDrop: function (e) {
-			e = e || event;
-		var dt = e.dataTransfer,
-			// IE8 doesn't like anything other than "Text"
+		var	dt = e.dataTransfer,
+			// IE doesn't like anything other than "Text"
 			data = ((/*@cc_on!@*/0) ? dt.getData("Text") : dt.getData("text/plain")),
 			files = dt.files || false;
 		
@@ -119,7 +124,7 @@ FD.fontListView = Backbone.View.extend({
 			this.parseDataFonts(data);
 		}
 		
-		this.preventActions(e);
+		e.preventDefault();
 	},
 	
 	parseDroppedFonts: function (files) {
@@ -148,6 +153,7 @@ FD.fontListView = Backbone.View.extend({
 					} else {
 						// FF4 exposes create/revokeObjectURL on the new URL API
 						font = window.URL.createObjectURL(file);
+						console.log(font);
 					}
 					this.addFontFace({
 						target: {
@@ -166,7 +172,7 @@ FD.fontListView = Backbone.View.extend({
 					   http://code.google.com/p/chromium/issues/detail?id=48367
 					   reader.addEventListener("loadend", FD.App.addFontFace(event);, false);
 					*/
-					reader.onloadend = function (event) { FD.App.addFontFace(event); };
+					reader.onloadend = function (event) { FD.fontListView.addFontFace(event); };
 					reader.readAsDataURL(file); 
 				}
 			} else {
@@ -177,12 +183,14 @@ FD.fontListView = Backbone.View.extend({
 	
 	parseDataFonts: function (data) {
 		// Create crude JSON schema validator
+		console.log(data);
 	},
 	
 	addFontFace: function (data) {
-		var name = data.target.name,
-			size = data.target.size,
-			font = data.target.result,
+		var target = data.target,
+			name = target.name,
+			size = target.size,
+			font = target.result,
 			isObjectURL = data.objectURL,
 			dataURL, fontFaceStyle,
 			styleSheet = document.styleSheets[0];
@@ -207,7 +215,7 @@ FD.fontListView = Backbone.View.extend({
 			styleSheet.cssText = fontFaceStyle;
 		}
 		
-		FD.fontCollection.add({
+		FD.fonts.add({
 			name: name,
 			size: size,
 			active: true,
@@ -227,7 +235,7 @@ FD.fontListView = Backbone.View.extend({
 	}
 });
 
-FD.fontEditorView = Backbone.View.extend({
+FD.FontEditorView = Backbone.View.extend({
 	
 	initialize: function () {
 		_.bindAll(this, 'updateFont');
@@ -238,6 +246,9 @@ FD.fontEditorView = Backbone.View.extend({
 	updateFont: function (font) {
 		var fontname = document.getElementById("fontname");
 		
+		// Requery the DOM as element may not exist yet or it may not be on the page
+		this.el = document.getElementById("wfs") || this.el;
+		
 		if(!!fontname) {
 			fontname.innerHTML = font;
 			fontname.style.fontFamily = font;
@@ -247,22 +258,103 @@ FD.fontEditorView = Backbone.View.extend({
 	
 });
 
-FD.fontGalleryView = Backbone.View.extend({
+FD.FontGalleryView = Backbone.View.extend({
 	
-	initialize: function () {
-		_.bindAll(this, 'updateFont');
+	initialize: function (models) {
+		models = models || this.options;
+		
+		_.bindAll(this, 'template', 'render', 'className', 'requestFont', 'callback');
+		
+		_.each(models,this.render);
 	},
 	
-	slab: document.getElementById("wfs"),
+	el: document.getElementById("gallery"),
 	
-	updateFont: function (font) {
-		var fontname = document.getElementById("fontname");
+	template: _.template([
+		'<div class="colx4 item">',
+			'<h2>',
+				'<%= name %>',
+				'<div class="info01" tabindex="0">',
+					'<ul>',
+						'<li class="title"><strong style="font-family: \'<%= name %>\';"><%= name %></strong></li>',
+						'<li><strong>Size:</strong> <%= size %> </li>',
+						'<li><strong>Author:</strong> <a href="<%= author %>"><%= authorurl %></a> </li>',
+						'<li><strong>License:</strong> <a href="<%= licenseurl %>"><%= license %></a></li>',
+					'</ul>',
+				'</div>',
+			'</h2>',
+			'<p class="preview">AaBbCcDd</p>',
+			'<a class="button" href="/gallery/<%= name %>/index.jsonp" id="<%= name %>" data-font="<%= name %>">Load <%= name %></a>',
+		'</div>'
+	].join('')),
+	
+	events: {
+		'click .button': 'addFont'
+	},
+	
+	addFont: function (evt) {
+		var font, elem = evt.target,
+			name = elem.getAttribute("data-font"),
+			fonturl = elem.href;
 		
-		if(!!fontname) {
-			fontname.innerHTML = font;
-			fontname.style.fontFamily = font;
-		}
-		this.el.style.fontFamily = font;
-	}
+		_.each(this.options,function(k,i){
+			if(k.name === name) {
+				font = k;
+			}
+		});
+		
+		this.requestFont(fonturl, elem);
+		FD.fonts.add(font);
+		
+		evt.preventDefault();
+	},
 	
+	requestFont: function (url, elem) {
+		var head = document.getElementsByTagName("head")[0],
+			script = document.createElement("script");
+		
+		//elem.parentNode.className = "loading";
+		
+		if(script = document.getElementById('jsonFontData')) {
+			script.parentNode.removeChild(script);
+			// http://neil.fraser.name/news/2009/07/27/
+			// Browsers won't garbage collect this object.
+			// So castrate it to avoid a major memory leak.
+			for (var prop in script) {
+				try { delete script[prop]; } catch(e) { }
+			}
+		}
+		
+		// Append script tag and attribute to head
+		script = document.createElement("script");
+		script.id = "jsonFontData";
+		script.src = url;
+		
+		head.appendChild(script);
+	},
+	
+	fontData: '',
+	
+	callback: function (data, elem) {
+		this.fontData = data;
+		
+		var font = document.getElementById(elem);
+		
+		font.title = "Drag and drop me!";
+		
+		bean.add(font,"dragstart",function(evt) {
+			(!/*@cc_on!@*/0) ?
+				// Normal browsers
+				evt.dataTransfer.setData("text/plain", FD.fontGalleryView.fontData) :
+				// IE6-8 will only accept setData("text")
+				// setting this for every browser breaks ability to drag from different browser e.g. safari 4 to firefox 3.5 except IE7-8
+				evt.dataTransfer.setData("Text", FD.fontGalleryView.fontData);
+		});
+	},
+	
+	render: function (model) {
+		this.el.innerHTML += this.template(model);
+		
+		return this;
+	}
 });

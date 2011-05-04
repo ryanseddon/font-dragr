@@ -1,4 +1,4 @@
-FD.font = Backbone.Model.extend({
+FD.Font = Backbone.Model.extend({
 	initialize: function ( attributes ) {
 		this.bind("add",this.syncDroppedFonts);
 	},
@@ -18,15 +18,22 @@ FD.font = Backbone.Model.extend({
 	}
 });
 
-FD.fonts = Backbone.Collection.extend({ 
-	model: FD.font,
+FD.Fonts = Backbone.Collection.extend({ 
+	model: FD.Font,
 	
 	initialize: function ( attributes ) {
 		
 	}
 });
 
-var fontGallery = Backbone.Collection.extend({});
+// Rather than create a new model for gallery fonts we'll extend the main Font model
+FD.GalleryFont = FD.Font.extend({
+	
+});
+
+FD.GalleryFonts = Backbone.Collection.extend({
+	model: FD.GalleryFont
+});
 
 /*FD.fontGallery = new fontGallery([
 	{},

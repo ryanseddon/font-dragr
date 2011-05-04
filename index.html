@@ -42,125 +42,130 @@
 				
 				<nav>
 					<ul role="tablist">
-						<li class="active"><a href="#">Home</a></li>
-						<li><a href="#editor">Editor</a></li>
-						<li><a href="#gallery">Gallery</a></li>
+						<li class="active"><a href="/">Home</a></li>
+						<li><a href="editor.html">Editor</a></li>
+						<li><a href="gallery.html">Gallery</a></li>
 					</ul>
 				</nav>
 			</div>
 		</header>
 		
-		<section id="banner" role="banner" class="clearfix">
-			<div class="container grid">
-				<h1 class="colx8">A revolutionary way to test custom fonts in the browser. No coding, no uploading, just drag and drop.</h1>
-				<aside role="complementary" class="colx4">
-					<video height="200" width="300" controls poster="assets/poster.jpg">
-					    <source type="video/mp4" src="screencast.mp4">
-					    <source type="video/webm" src="screencast.webm">
-					    <source type="video/ogg" src="screencast.ogv">
-					    <object width="300" height="200" type="application/x-shockwave-flash">
-					        <param name="movie" value="http://www.youtube.com/v/_pfiyPzr7TE?fs=1&hl=en_US">
-					        <param name="allowFullScreen" value="true">
-					        <param name="allowscriptaccess" value="always">
-					        <embed src="http://www.youtube.com/v/_pfiyPzr7TE?fs=1&hl=en_US" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="300" height="200">
-					    </object>
-					</video>
-				</aside>
+		<div id="subcontainer">
+			<section id="banner" role="banner" class="clearfix">
+				<div class="container grid">
+					<h1 class="colx8">A revolutionary way to test custom fonts in the browser. No coding, no uploading, just drag and drop.</h1>
+					<aside role="complementary" class="colx4">
+						<video height="200" width="300" controls poster="assets/poster.jpg">
+							<source type="video/mp4" src="screencast.mp4">
+							<source type="video/webm" src="screencast.webm">
+							<source type="video/ogg" src="screencast.ogv">
+							<object width="300" height="200" type="application/x-shockwave-flash">
+								<param name="movie" value="http://www.youtube.com/v/_pfiyPzr7TE?fs=1&hl=en_US">
+								<param name="allowFullScreen" value="true">
+								<param name="allowscriptaccess" value="always">
+								<embed src="http://www.youtube.com/v/_pfiyPzr7TE?fs=1&hl=en_US" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="300" height="200">
+							</object>
+						</video>
+					</aside>
+				</div>
+			</section>
+			
+			<div id="content" class="grid clearfix">
+				<section id="dropzone" role="region" class="colx4">
+					<h1>Drag your fonts here</h1>
+					<ul id="fonts"></ul>
+				</section>
+				<section id="custom" role="main" class="colx8">
+					<div class="colx4 alpha">
+						<h1>What is it?</h1>
+						<p>font dragr allows you to easily test custom fonts, through the <code>@font-face</code> at-rule, without the need for any CSS coding or knowledge of CSS coding. All you need to do is drag and drop.</p>
+						<p>It alleviates the cumbersome nature of testing custom fonts and allows you to quickly and easily load in a font, play around with it and see if it's the right one for you.</p>
+						
+					</div>
+					<div class="colx4 omega">
+						<h1>How do I use it?</h1>
+						<p>It's incredibly easy to use. All you need to do is drag and drop a font file from your computer into font dragr in a supporting browser (Such as Firefox 3.6+ or Chrome 6+).</p>
+						<p>You can also select a font to test from the gallery. These fonts can be tested in most browsers, including IE6 and up.</p>
+					</div>
+				</section>
+				
+				<section class="colx12">
+					
+					<h1 class="hr01"><span>The revolution doesn't end there</span></h1>
+					
+					<div class="colx8 alpha">
+						<h1>You can test on any website</h1>
+						<p>Testing fonts within font dragr, while useful, won't give the full look and feel of testing it on your own site. That's where the font dragr bookmarklet comes in handy.</p>
+						<p>The bookmarklet allows you to test any font from your file system or any of the fonts found in the gallery. Same simple approach the web app has, with the added ability for testing on any website.</p>
+						<p>To install the bookmarklet in your browser just drag and drop the button below to your bookmarks. If you're not sure where to drag it too or you want to get a quick inside look at how you can use it make sure to check out the screencast to the right.</p>
+						<p>Drag the <a href="#" class="button vomzom">font dragr</a> bookmarklet to your bookmarks.</p>
+						
+					</div>
+					<div class="colx4 omega">
+						<h1>Bookmarklet in action</h1>
+						<video height="200" width="300" controls poster="assets/poster.jpg">
+							<source type="video/mp4" src="screencast.mp4">
+							<source type="video/webm" src="screencast.webm">
+							<source type="video/ogg" src="screencast.ogv">
+							<object width="300" height="200" type="application/x-shockwave-flash">
+								<param name="movie" value="http://www.youtube.com/v/_pfiyPzr7TE?fs=1&hl=en_US">
+								<param name="allowFullScreen" value="true">
+								<param name="allowscriptaccess" value="always">
+								<embed src="http://www.youtube.com/v/_pfiyPzr7TE?fs=1&hl=en_US" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="300" height="200">
+							</object>
+						</video>
+					</div>
+					
+				</section>
+				
+				<section class="colx12">
+					
+					<h1 class="hr01"><span>The bookmarklet in three simple steps</span></h1>
+					
+					<div class="colx4 alpha">
+						<h1>Load it</h1>
+						
+						<p><img src="gr_load.gif"></p>
+						
+						<p>Load the font dragr bookmarklet in the website you wish to test. Once it loads it will appear at the top of the browser window ready to use.</p>
+						
+					</div>
+					<div class="colx4">
+						<h1>Drag it</h1>
+						
+						<p><img src="gr_drag.gif"></p>
+						
+						<p>Drag and drop a font from your desktop or from the gallery. The last dropped font will become active and be applied to the body element by default.</p>
+						
+					</div>
+					<div class="colx4 omega">
+						<h1>Test it</h1>
+						
+						<p><img src="gr_test.gif"></p>
+						
+						<p>With the bookmarklet you can target specific elements using CSS selectors. Or by selecting some text you can apply the custom font to a selection.</p>
+						
+					</div>
+					
+				</section>
 			</div>
-		</section>
-		
-		<div id="content" class="grid clearfix">
-			<section id="dropzone" role="region" class="colx4">
-				<h1>Drag your fonts here</h1>
-				<ul id="fonts"></ul>
-			</section>
-			<section id="custom" role="main" class="colx8">
-				<div class="colx4 alpha">
-					<h1>What is it?</h1>
-					<p>font dragr allows you to easily test custom fonts, through the <code>@font-face</code> at-rule, without the need for any CSS coding or knowledge of CSS coding. All you need to do is drag and drop.</p>
-					<p>It alleviates the cumbersome nature of testing custom fonts and allows you to quickly and easily load in a font, play around with it and see if it's the right one for you.</p>
-					
-				</div>
-				<div class="colx4 omega">
-					<h1>How do I use it?</h1>
-					<p>It's incredibly easy to use. All you need to do is drag and drop a font file from your computer into font dragr in a supporting browser (Such as Firefox 3.6+ or Chrome 6+).</p>
-					<p>You can also select a font to test from the gallery. These fonts can be tested in most browsers, including IE6 and up.</p>
-				</div>
-			</section>
-			
-			<section class="colx12">
-				
-				<h1 class="hr01"><span>The revolution doesn't end there</span></h1>
-				
-				<div class="colx8 alpha">
-					<h1>You can test on any website</h1>
-					<p>Testing fonts within font dragr, while useful, won't give the full look and feel of testing it on your own site. That's where the font dragr bookmarklet comes in handy.</p>
-					<p>The bookmarklet allows you to test any font from your file system or any of the fonts found in the gallery. Same simple approach the web app has, with the added ability for testing on any website.</p>
-					<p>To install the bookmarklet in your browser just drag and drop the button below to your bookmarks. If you're not sure where to drag it too or you want to get a quick inside look at how you can use it make sure to check out the screencast to the right.</p>
-					<p>Drag the <a href="#" class="button">font dragr</a> bookmarklet to your bookmarks.</p>
-					
-				</div>
-				<div class="colx4 omega">
-					<h1>Bookmarklet in action</h1>
-					<video height="200" width="300" controls poster="assets/poster.jpg">
-					    <source type="video/mp4" src="screencast.mp4">
-					    <source type="video/webm" src="screencast.webm">
-					    <source type="video/ogg" src="screencast.ogv">
-					    <object width="300" height="200" type="application/x-shockwave-flash">
-					        <param name="movie" value="http://www.youtube.com/v/_pfiyPzr7TE?fs=1&hl=en_US">
-					        <param name="allowFullScreen" value="true">
-					        <param name="allowscriptaccess" value="always">
-					        <embed src="http://www.youtube.com/v/_pfiyPzr7TE?fs=1&hl=en_US" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="300" height="200">
-					    </object>
-					</video>
-				</div>
-				
-			</section>
-			
-			<section class="colx12">
-				
-				<h1 class="hr01"><span>The bookmarlet in three simple steps</span></h1>
-				
-				<div class="colx4 alpha">
-					<h1>Load it</h1>
-					
-					<p><img src="gr_load.gif"></p>
-					
-					<p>Load the font dragr bookmarklet in the website you wish to test. Once it loads it will appear at the top of the browser window ready to use.</p>
-					
-				</div>
-				<div class="colx4">
-					<h1>Drag it</h1>
-					
-					<p><img src="gr_drag.gif"></p>
-					
-					<p>Drag and drop a font from your desktop or from the gallery. The last dropped font will become active and be applied to the body tag by default.</p>
-					
-				</div>
-				<div class="colx4 omega">
-					<h1>Test it</h1>
-					
-					<p><img src="gr_test.gif"></p>
-					
-					<p>With the bookmarklet you can target specific elements using CSS selectors. Or by selecting some text you can apply the custom font to a selection.</p>
-					
-				</div>
-				
-			</section>
 		</div>
 		
 		<footer role="contentinfo">
 			<div class="grid clearfix">
 				<p class="colx4">Copyright &copy; 2011 <a href="http://www.thecssninja.com/">Ryan Seddon</a></p>
-				<p class="colx8">Licensed under the <a href="license.txt">MIT</a> | <a href="http://github.com/ryanseddon/fontdragr">hack</a> | <a href="license.txt">donate</a> | <a href="license.txt">contact</a> | <a href="http://defaulterror.com/typo.htm" title="The font used on this site was obtained from here">VomZom</a></p>
+				<p class="colx8">Licensed under the <a href="license.txt">MIT</a> | <a href="http://github.com/ryanseddon/font-dragr">hack</a> | <a href="license.txt">donate</a> | <a href="license.txt">contact</a> | <a href="http://defaulterror.com/" title="The font used on this site was obtained from here">VomZom</a></p>
 			</div>
 		</footer>
 	</div>
 	
 	<!-- scripts concatenated and minified via ant build script-->
 	<script type="text/javascript" src="app/jquery.js"></script>
+	<script type="text/javascript" src="app/qwery.js"></script>
+	<script type="text/javascript" src="app/bean.js"></script>
 	<script type="text/javascript" src="app/underscore.js"></script>
 	<script type="text/javascript" src="app/backbone.js"></script>
+	<script type="text/javascript" src="app/backbone-history.js"></script>
 	<script type="text/javascript" src="app/backbone-delegate.js"></script>
 	<script type="text/javascript" src="_javascript.js"></script>
 	<script type="text/javascript" src="app/_controller.js"></script>
