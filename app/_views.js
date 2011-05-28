@@ -16,19 +16,7 @@ FD.FontView = Backbone.View.extend({
 	
 	className: '',
 	
-	template: _.template([
-		'<div class="<%= active ? \'active"\' : \'\' %>" style="font-family: \'<%= name %>\';" tabindex="0">',
-			'<span><%= name %></span>',
-			'<div class="info01" tabindex="0">',
-				'<ul>',
-					'<li class="title"><strong style="font-family: \'<%= name %>\';"><%= name %></strong></li>',
-					'<li><strong>Size:</strong> <%= size %> </li>',
-					'<li><strong>Author:</strong> <a href="<%= authorurl %>"><%= author %></a> </li>',
-					'<li><strong>License:</strong> <a href="<%= licenseurl %>"><%= license %></a></li>',
-				'</ul>',
-			'</div>',
-		'</div>'
-	].join('')),
+	template: FD.templates.fontView,
 	
 	handleFontChange: function (e,t) {
 		var evt = e || event,
@@ -131,7 +119,9 @@ FD.FontListView = Backbone.View.extend({
 		var file, droppedFullFileName, droppedFileName, droppedFileSize, font,
 			count = files.length,
 			acceptedFileExtensions = /^.*\.(ttf|otf|woff)$/i,
-			reader = new FileReader();
+			reader = new FileReader(),
+			url = window.URL || window.webkitURL,
+			objURL = url.createObjectURL || false;
 		
 		for (var i = 0; i < count; i++) {
 			file = files[i];
@@ -143,18 +133,9 @@ FD.FontListView = Backbone.View.extend({
 				droppedFileSize = Math.round(file.size/1024) + "kb";
 				
 				// If the browser supports referencing a file without having to load it into memory let's use it
-				if("createObjectURL" in window || "URL" in window && "createObjectURL" in window.URL || "webkitURL" in window && "createObjectURL" in window.webkitURL) {
-					if("createObjectURL" in window) {
-						// Chrome exposes create/revokeObjectURL directly on window
-						font = window.createObjectURL(file);
-					} else if("webkitURL" in window) {
-						// Chrome exposes create/revokeObjectURL on the new webkitURL API
-						font = window.webkitURL.createObjectURL(file);
-					} else {
-						// FF4 exposes create/revokeObjectURL on the new URL API
-						font = window.URL.createObjectURL(file);
-						console.log(font);
-					}
+				if(objURL) {
+					font = objURL(file);
+					
 					this.addFontFace({
 						target: {
 							result: font,
@@ -183,15 +164,53 @@ FD.FontListView = Backbone.View.extend({
 	
 	parseDataFonts: function (data) {
 		// Create crude JSON schema validator
-		console.log(data);
+		// Make sure data being parsed is valid JSON
+		try {
+			data = JSON.parse(data);
+			if(!data.error) {
+				var fontFileName = data.fontName.split("/").reverse()[0];
+					fontFileName = fontFileName.replace(/\..+$/,"");
+				
+				data.fontSize = Math.round(data.fontSize/1024) + "kb";
+				
+				if(/*@cc_on!@*/0) {
+					// IE can't do base64 fonts but it can load cross domain fonts. Pass url instead.
+					data.fontDataURL = data.fontName;
+				} else {
+					data.fontDataURL = "data:application/octet-stream;base64," + data.fontDataURL;
+				}
+				
+				this.addFontFace({
+					target: {
+						name: fontFileName,
+						size: data.fontSize,
+						license: data.fontLicense,
+						licenseurl: data.fontLicenseUrl,
+						author: data.fontAuthor,
+						authorurl: data.fontAuthorUrl,
+						result: data.fontDataURL
+					}
+				});
+				
+				delete data;
+			} else {
+				alert(data.error);
+			}
+		} catch(e) {
+			alert("Data was not valid JSON.");
+		}
 	},
 	
 	addFontFace: function (data) {
 		var target = data.target,
 			name = target.name,
 			size = target.size,
+			license = target.license || "unknown",
+			licenseurl = target.licenseurl || "",
+			author = target.author || "unknown",
+			authorurl = target.authorurl || "",
 			font = target.result,
-			isObjectURL = data.objectURL,
+			isObjectURL = data.objectURL || false,
 			dataURL, fontFaceStyle,
 			styleSheet = document.styleSheets[0];
 			
@@ -200,7 +219,7 @@ FD.FontListView = Backbone.View.extend({
 			// http://code.google.com/p/chromium/issues/detail?id=48368
 			dataURL = font.split("base64");
 			
-			if(dataURL[0].indexOf("application/octet-stream") == -1) {
+			if(!!~dataURL[0].indexOf("application/octet-stream")) {
 				dataURL[0] = "data:application/octet-stream;base64";
 				
 				font = dataURL[0] + dataURL[1];
@@ -218,6 +237,10 @@ FD.FontListView = Backbone.View.extend({
 		FD.fonts.add({
 			name: name,
 			size: size,
+			license: license,
+			licenseurl: licenseurl,
+			author: author,
+			authorurl: authorurl,
 			active: true,
 			objURL: (isObjectURL) ? font : false
 		});
@@ -268,32 +291,17 @@ FD.FontGalleryView = Backbone.View.extend({
 		_.each(models,this.render);
 	},
 	
-	el: document.getElementById("gallery"),
+	el: document.getElementById("subcontainer"),
 	
-	template: _.template([
-		'<div class="colx4 item">',
-			'<h2>',
-				'<%= name %>',
-				'<div class="info01" tabindex="0">',
-					'<ul>',
-						'<li class="title"><strong style="font-family: \'<%= name %>\';"><%= name %></strong></li>',
-						'<li><strong>Size:</strong> <%= size %> </li>',
-						'<li><strong>Author:</strong> <a href="<%= author %>"><%= authorurl %></a> </li>',
-						'<li><strong>License:</strong> <a href="<%= licenseurl %>"><%= license %></a></li>',
-					'</ul>',
-				'</div>',
-			'</h2>',
-			'<p class="preview">AaBbCcDd</p>',
-			'<a class="button" href="/gallery/<%= name %>/index.jsonp" id="<%= name %>" data-font="<%= name %>">Load <%= name %></a>',
-		'</div>'
-	].join('')),
+	template: FD.templates.galleryView,
 	
 	events: {
 		'click .button': 'addFont'
 	},
 	
 	addFont: function (evt) {
-		var font, elem = evt.target,
+		var font, 
+			elem = evt.target,
 			name = elem.getAttribute("data-font"),
 			fonturl = elem.href;
 		
@@ -304,7 +312,6 @@ FD.FontGalleryView = Backbone.View.extend({
 		});
 		
 		this.requestFont(fonturl, elem);
-		FD.fonts.add(font);
 		
 		evt.preventDefault();
 	},
@@ -336,9 +343,9 @@ FD.FontGalleryView = Backbone.View.extend({
 	fontData: '',
 	
 	callback: function (data, elem) {
-		this.fontData = data;
-		
 		var font = document.getElementById(elem);
+		
+		this.fontData = data;
 		
 		font.title = "Drag and drop me!";
 		
@@ -350,9 +357,12 @@ FD.FontGalleryView = Backbone.View.extend({
 				// setting this for every browser breaks ability to drag from different browser e.g. safari 4 to firefox 3.5 except IE7-8
 				evt.dataTransfer.setData("Text", FD.fontGalleryView.fontData);
 		});
+		
+		FD.fontListView.parseDataFonts(data);
 	},
 	
 	render: function (model) {
+		this.el = document.getElementById("gallery") || this.el;
 		this.el.innerHTML += this.template(model);
 		
 		return this;

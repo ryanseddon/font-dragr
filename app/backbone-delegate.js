@@ -32,7 +32,7 @@ var eventSplitter = /^(\w+)\s*(.*)$/;
 			  bean.add(this.el, selector, eventName, method, qwery);
 			}
 		  }
-		},
+		}
 	});
 
 })();

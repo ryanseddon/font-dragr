@@ -2,20 +2,21 @@
 (function () {
     var b = window.location,
         c = !! (window.history && window.history.pushState),
-        d = /^#*/, _checkUrl = this.checkUrl;
+        d = /^#*/;
+	
     _.extend(Backbone.History.prototype, {
         getFragment: function (a) {
             a = a || window.location;
             return c ? a.pathname + a.search : a.hash.replace(d, "") || "/";
         },
         start: function () {
-            if (c) $(window).bind("popstate", this.checkUrl);
-            else if (b.pathname === "/") $(window).bind("hashchange", this.checkUrl);
+            if (c) bean.add(window,"popstate",this.checkUrl);
+            else if (b.pathname === "/") bean.add(window,"hashchange",this.checkUrl);
             else {
-                b.replace("/#" + b.pathname);
+                b.replace("/#" + b.pathname.substring(1));
                 return;
             }
-			return this.loadUrl()
+			return this.loadUrl();
         },
         saveLocation: function (a) {
             a = (a || "").replace(d, "");
@@ -34,7 +35,7 @@
 			
 			loc = (loc === "" || loc === "/") ? "home.tmpl" : loc.split(".")[0]+".tmpl";
 			FD.appController.routeHandler(loc);
-			_checkUrl(evt);
+
 			evt.preventDefault();
 		},
         loadUrl: function (a) {
@@ -45,7 +46,7 @@
                     return true
                 }
             });
-            $(document).trigger("loadurl", a);
+			bean.fire(a, "loadurl");
             return f;
         }
     })

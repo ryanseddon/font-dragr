@@ -6,9 +6,9 @@ FD.Font = Backbone.Model.extend({
 		size: "35kb", // if for some reason we fail to get font size fake it.
 		active: false,
 		license: "unknown",
-		licenseurl: "#",
+		licenseurl: "",
 		author: "unknown",
-		authorurl: "#"
+		authorurl: ""
 	},
 	validate: function ( attributes ) {
 		
