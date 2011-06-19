@@ -1,12 +1,10 @@
 FD.FontView = Backbone.View.extend({
 	initialize: function () {
-		var fonts = document.getElementById("fonts");
-		
 		_.bindAll(this, 'unactivateFont');
 		this.model.bind('change', this.unactivateFont);
 	},
 	
-	parent: document.getElementById("fonts"),
+	parent: $("#fonts"),
 	
 	events: {
 		'click': 'handleFontChange'
@@ -18,27 +16,29 @@ FD.FontView = Backbone.View.extend({
 	
 	template: FD.templates.fontView,
 	
-	handleFontChange: function (e,t) {
-		var evt = e || event,
-			elem = this.el,
+	handleFontChange: function (e) {
+		var evt = e || event
+			elem = $(this.el),
+			key = e.which,
+			type = e.type,
 			model = this.model;
 		
 		FD.fontListView.resetActiveState(model.get("name"));
 		
 		model.set({active: true});
 		
-		elem.className = "active";
+		elem.addClass("active");
 		
 		FD.fontEditorView.updateFont(model.get("name"));
 	},
 	
 	unactivateFont: function () {
-		this.el.className = "";
+		$(this.el).removeClass("active");
 	},
 	
 	render: function () {
 		this.className = (this.model.get("active")) ? "active" : "";
-		this.el.innerHTML = this.template(this.model.toJSON());
+		$(this.el).html(this.template(this.model.toJSON()));
 		
 		if(this.model.get("active")) {
 			this.handleFontChange(this);
@@ -49,7 +49,7 @@ FD.FontView = Backbone.View.extend({
 });
 
 FD.FontListView = Backbone.View.extend({
-	id: document.getElementById("fonts"),
+	id: $("#fonts"),
 	
 	tagName: "ul",
 	
@@ -66,18 +66,18 @@ FD.FontListView = Backbone.View.extend({
 			licenseurl: "http://defaulterror.com/typo.htm#Font%20License%20Information"
 		});
 		
-		bean.add(document, {
+		$("body").bind({
 		  drop: this.handleDrop,
-		  dragenter: this.preventActions,
-		  dragover: this.preventActions
+		  dragenter: function(e){ e.preventDefault(); },
+		  dragover: function(e){ e.preventDefault(); }
 		});
 	},	
 	
 	addFont: function (font) {
 		var fontView = new FD.FontView({model: font}),
-			parent = document.getElementById("fonts");
+			parent = $("#fonts");
 		
-		parent.appendChild(fontView.render().el);
+		parent.append(fontView.render().el);
 	},
 	
 	addAllFonts: function() {
@@ -134,7 +134,7 @@ FD.FontListView = Backbone.View.extend({
 				
 				// If the browser supports referencing a file without having to load it into memory let's use it
 				if(objURL) {
-					font = objURL(file);
+					font = url.createObjectURL(file);
 					
 					this.addFontFace({
 						target: {
@@ -173,7 +173,7 @@ FD.FontListView = Backbone.View.extend({
 				
 				data.fontSize = Math.round(data.fontSize/1024) + "kb";
 				
-				if(/*@cc_on!@*/0) {
+				if(/*@cc_on!@*/0 && !!FD.ltIE9) {
 					// IE can't do base64 fonts but it can load cross domain fonts. Pass url instead.
 					data.fontDataURL = data.fontName;
 				} else {
@@ -219,7 +219,7 @@ FD.FontListView = Backbone.View.extend({
 			// http://code.google.com/p/chromium/issues/detail?id=48368
 			dataURL = font.split("base64");
 			
-			if(!!~dataURL[0].indexOf("application/octet-stream")) {
+			if(!~dataURL[0].indexOf("application/octet-stream")) {
 				dataURL[0] = "data:application/octet-stream;base64";
 				
 				font = dataURL[0] + dataURL[1];
@@ -231,7 +231,7 @@ FD.FontListView = Backbone.View.extend({
 		if(!!styleSheet.insertRule) {
 			styleSheet.insertRule(fontFaceStyle, 0);
 		} else {
-			styleSheet.cssText = fontFaceStyle;
+			styleSheet.cssText += fontFaceStyle;
 		}
 		
 		FD.fonts.add({
@@ -244,17 +244,6 @@ FD.FontListView = Backbone.View.extend({
 			active: true,
 			objURL: (isObjectURL) ? font : false
 		});
-	},
-	
-	preventActions: function (evt) {
-		evt = evt || window.event;
-		if(evt.stopPropagation && evt.preventDefault) {
-			evt.stopPropagation();
-			evt.preventDefault();
-		} else {
-			evt.cancelBubble = true;
-			evt.returnValue = false;
-		}
 	}
 });
 
@@ -267,16 +256,16 @@ FD.FontEditorView = Backbone.View.extend({
 	el: document.getElementById("wfs"),
 	
 	updateFont: function (font) {
-		var fontname = document.getElementById("fontname");
+		var fontname = $("#fontname");
 		
 		// Requery the DOM as element may not exist yet or it may not be on the page
-		this.el = document.getElementById("wfs") || this.el;
+		this.el = $("#wfs") || $(this.el);
 		
-		if(!!fontname) {
-			fontname.innerHTML = font;
-			fontname.style.fontFamily = font;
+		if(!!fontname[0] || !!this.el[0]) {
+			fontname.text(font).css({"font-family":font});
+			this.el.css({"font-family":font});
 		}
-		this.el.style.fontFamily = font;
+		
 	}
 	
 });
@@ -291,7 +280,7 @@ FD.FontGalleryView = Backbone.View.extend({
 		_.each(models,this.render);
 	},
 	
-	el: document.getElementById("subcontainer"),
+	el: $("#subcontainer"),
 	
 	template: FD.templates.galleryView,
 	
@@ -301,9 +290,9 @@ FD.FontGalleryView = Backbone.View.extend({
 	
 	addFont: function (evt) {
 		var font, 
-			elem = evt.target,
-			name = elem.getAttribute("data-font"),
-			fonturl = elem.href;
+			elem = $(evt.target),
+			name = elem.attr("data-font"),
+			fonturl = elem[0].href+"index.jsonp";
 		
 		_.each(this.options,function(k,i){
 			if(k.name === name) {
@@ -317,8 +306,8 @@ FD.FontGalleryView = Backbone.View.extend({
 	},
 	
 	requestFont: function (url, elem) {
-		var head = document.getElementsByTagName("head")[0],
-			script = document.createElement("script");
+		var script,
+			head = document.head || document.getElementsByTagName("head")[0];
 		
 		//elem.parentNode.className = "loading";
 		
@@ -343,13 +332,13 @@ FD.FontGalleryView = Backbone.View.extend({
 	fontData: '',
 	
 	callback: function (data, elem) {
-		var font = document.getElementById(elem);
+		var font = $("#"+elem);
 		
 		this.fontData = data;
 		
-		font.title = "Drag and drop me!";
+		font.attr("title","Drag and drop me!");
 		
-		bean.add(font,"dragstart",function(evt) {
+		font.bind("dragstart",function(evt) {
 			(!/*@cc_on!@*/0) ?
 				// Normal browsers
 				evt.dataTransfer.setData("text/plain", FD.fontGalleryView.fontData) :
@@ -362,8 +351,8 @@ FD.FontGalleryView = Backbone.View.extend({
 	},
 	
 	render: function (model) {
-		this.el = document.getElementById("gallery") || this.el;
-		this.el.innerHTML += this.template(model);
+		this.el = $("#gallery") || $(this.el);
+		this.el.append(this.template(model));
 		
 		return this;
 	}

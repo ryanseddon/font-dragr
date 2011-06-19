@@ -105,6 +105,20 @@ button {  width: auto; overflow: visible; }
 }
 /* Subset fonts for gallery */
 @font-face {
+    font-family: 'VomZom-subset';
+    src: url('gallery/VomZom/vomzom.eot?') format('?'),
+        url('gallery/VomZom/vomzom.woff') format('woff'),
+        url('gallery/VomZom/vomzom.ttf') format('truetype'),
+        url('gallery/VomZom/vomzom.svg#VomZom') format('svg');
+}
+@font-face {
+    font-family: 'Strato-subset';
+    src: url('gallery/Strato/Strato-subset.eot?') format('?'),
+        url('gallery/Strato/Strato-subset.woff') format('woff'),
+        url('gallery/Strato/Strato-subset.ttf') format('truetype'),
+        url('gallery/Strato/Strato-subset.svg#Stratolinked') format('svg');
+}
+@font-face {
     font-family: 'Lobster-subset';
     src: url('gallery/Lobster/Lobster-subset.eot?') format('?'),
         url('gallery/Lobster/Lobster-subset.woff') format('woff'),
@@ -120,17 +134,38 @@ button {  width: auto; overflow: visible; }
 }
 @font-face {
     font-family: 'Tangerine-subset';
-    src: url('gallery/Tangerine_Regular/Tangerine_Regular-subset.eot?') format('?'),
-        url('gallery/Tangerine_Regular/Tangerine_Regular-subset.woff') format('woff'),
-        url('gallery/Tangerine_Regular/Tangerine_Regular-subset.ttf') format('truetype'),
-        url('gallery/Tangerine_Regular/Tangerine_Regular-subset.svg#Tangerine') format('svg');
+    src: url('gallery/Tangerine/Tangerine_Regular-subset.eot?') format('?'),
+        url('gallery/Tangerine/Tangerine_Regular-subset.woff') format('woff'),
+        url('gallery/Tangerine/Tangerine_Regular-subset.ttf') format('truetype'),
+        url('gallery/Tangerine/Tangerine_Regular-subset.svg#Tangerine') format('svg');
 }
 @font-face {
     font-family: 'Vollkorn-subset';
-    src: url('gallery/Vollkorn_Regular/Vollkorn_Regular-subset.eot?') format('?'),
-        url('gallery/Vollkorn_Regular/Vollkorn_Regular-subset.woff') format('woff'),
-        url('gallery/Vollkorn_Regular/Vollkorn_Regular-subset.ttf') format('truetype'),
-        url('gallery/Vollkorn_Regular/Vollkorn_Regular-subset.svg#Vollkorn') format('svg');
+    src: url('gallery/Vollkorn/Vollkorn_Regular-subset.eot?') format('?'),
+        url('gallery/Vollkorn/Vollkorn_Regular-subset.woff') format('woff'),
+        url('gallery/Vollkorn/Vollkorn_Regular-subset.ttf') format('truetype'),
+        url('gallery/Vollkorn/Vollkorn_Regular-subset.svg#Vollkorn') format('svg');
+}
+@font-face {
+    font-family: 'Null-subset';
+    src: url('gallery/Null/NullFree-subset.eot?') format('?'),
+        url('gallery/Null/NullFree-subset.woff') format('woff'),
+        url('gallery/Null/NullFree-subset.ttf') format('truetype'),
+        url('gallery/Null/NullFree-subset.svg#NullFreeRegular') format('svg');
+}
+@font-face {
+    font-family: 'Berenika-subset';
+    src: url('gallery/Berenika/BerenikaRegular-subset.eot?') format('?'),
+        url('gallery/Berenika/BerenikaRegular-subset.woff') format('woff'),
+        url('gallery/Berenika/BerenikaRegular-subset.ttf') format('truetype'),
+        url('gallery/Berenika/BerenikaRegular-subset.svg#BerenikaRegular') format('svg');
+}
+@font-face {
+    font-family: 'Ubuntu-subset';
+    src: url('gallery/Ubuntu/Ubuntu-Regular-subset.eot?') format('?'),
+        url('gallery/Ubuntu/Ubuntu-Regular-subset.woff') format('woff'),
+        url('gallery/Ubuntu/Ubuntu-Regular-subset.ttf') format('truetype'),
+        url('gallery/Ubuntu/Ubuntu-Regular-subset.svg#UbuntuRegular') format('svg');
 }
 
 .vomzom { font-family: 'VomZom'; }
@@ -322,6 +357,8 @@ section[role="banner"] {
 	
 #fonts {
 	margin: 0 0 1em;
+	width: 300px;
+	float: left;
 }
 	#fonts li {
 		cursor: pointer;

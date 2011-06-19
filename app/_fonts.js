@@ -56,10 +56,10 @@ FD.gallery = [
 		license: "UBUNTU FONT LICENSE Version 1.0",
 		licenseurl: "http://font.ubuntu.com/ufl/ubuntu-font-licence-1.0.txt"
 	},{
-		name: "Gamaliel",
-		size: "43kb",
-		author: "Rafael Ferran",
-		authorurl: "",
+		name: "Berenika",
+		size: "125kb",
+		author: "wmk69",
+		authorurl: "http://openfontlibrary.org/member/wmk69",
 		license: "SIL Open Font License, 1.1",
 		licenseurl: "http://scripts.sil.org/OFL"
 	}

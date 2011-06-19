@@ -21,30 +21,32 @@ FD.AppRouter = Backbone.Router.extend({
 	routeHandler: function(tmpl) {
 		var localstorage = window.localStorage,
 			localData = localstorage.getItem("fd-"+tmpl),
-			busta = localstorage.getItem("fd-version-"+tmpl) === FD.version;
+			busta = localstorage.getItem("fd-version-"+tmpl) === FD.version,
+			subcontainer = $("#subcontainer");
 			
 		if(localstorage && localData && busta) {
-			document.getElementById("subcontainer").innerHTML = localData;
+			// Force innerHTML since IE8< cracks the shits when injecting with jQuery.html()
+			subcontainer[0].innerHTML = localData;
 			FD.fontListView.render();
 		} else {
-			reqwest({
-			  url: "app/"+tmpl,
-			  method: 'get',
-			  type: 'html',
-			  success: function (resp) {
-				document.getElementById("subcontainer").innerHTML = resp;
-				localstorage.setItem("fd-version-"+tmpl,FD.version);
-				
-				if(!!~tmpl.indexOf("gallery")) {
-					FD.fontGalleryView = new FD.FontGalleryView(FD.gallery);
-					localstorage.setItem("fd-"+tmpl,document.getElementById("subcontainer").innerHTML);
-				} else {
-					localstorage.setItem("fd-"+tmpl,resp);
-				}
-				
-				FD.fontListView.render();
-			  },
-			  failure: function (err) { }
+			$.ajax({
+				url: "app/"+tmpl,
+				success: function (resp) {
+					subcontainer.html(resp);
+					localstorage.setItem("fd-version-"+tmpl,FD.version);
+					
+					if(!!~tmpl.indexOf("gallery")) {
+						// On initial load click event is attached twice, remove first.
+						$("#subcontainer").undelegate(".button", "click");
+						FD.fontGalleryView = new FD.FontGalleryView(FD.gallery);
+						localstorage.setItem("fd-"+tmpl,subcontainer.html());
+					} else {
+						localstorage.setItem("fd-"+tmpl,resp);
+					}
+					
+					FD.fontListView.render();
+				},
+				failure: function (err) { }
 			});
 		}
 	}

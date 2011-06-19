@@ -23,6 +23,8 @@
   
   	<!--[if lte IE 8]>
 		<script type="text/javascript">
+			var FD = FD || {};
+			FD.ltIE9 = true;
 			// For discussion and comments, see: http://remysharp.com/2009/01/07/html5-enabling-script/
 			(function(){var e = "footer,header,hgroup,section".split(','),i=e.length;while(i--){document.createElement(e[i]);}})();
 		</script>
@@ -160,16 +162,19 @@
 	</div>
 	
 	<!-- scripts concatenated and minified via ant build script-->
+	<!-- Alternative to jQuery when backbone properly decouples jQuery dependncy
 	<script src="app/qwery.js"></script>
 	<script src="app/bonzo.js"></script>
 	<script src="app/bean.js"></script>
 	<script src="app/reqwest.js"></script>
+	-->
+	<script src="app/jquery.js"></script>
 	<script src="app/underscore.js"></script>
+	<script src="app/json2.min.js"></script>
 	<script src="app/_javascript.js"></script>
 	<script src="app/_fonts.js"></script>
 	<script src="app/_templates.js"></script>
 	<script src="app/backbone.js"></script>
-	<script src="app/backbone-delegate.js"></script>
 	<script src="app/_routes.js"></script>
 	<script src="app/_models-collections.js"></script>
 	<script src="app/_views.js"></script>

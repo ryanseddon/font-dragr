@@ -1,7 +1,7 @@
 /*
  * font dragr v2
  * http://www.thecssninja.com/javascript/font-dragr2
- * Copyright (c) 2010 Ryan Seddon 
+ * Copyright (c) 2011 Ryan Seddon 
  * released under the MIT License
  * http://www.fontdragr.com/license.txt
 */
@@ -9,16 +9,9 @@
 var FD = FD || {};
 
 (function(win){
-	var nav = document.getElementsByTagName("nav")[0];
-	
 	FD.version = "2.0.1";
 	
-	function $(selector) {
-	  return bonzo(qwery(selector));
-	}
-	bonzo.aug(bonzo, $);
-	
-	bean.add(win, "load",function(){
+	$(function(){
 		// Collections
 		FD.fonts = new FD.Fonts;
 		FD.galleryFonts = new FD.GalleryFonts;
@@ -32,19 +25,25 @@ var FD = FD || {};
 		FD.appRouter = new FD.AppRouter;
 		Backbone.history.start({pushState: true});
 		
+		// Add dataTransfer to jQuery event object
+		jQuery.event.props.push("dataTransfer");
+		
 		// No server side so turn sync into noop fn call
 		Backbone.sync = function () {
 			return false;
 		};
 		
-		bean.add(nav, "a", "click", function(evt){
-			var location = $(this).attr("href"),
-				parent = evt.target.parentNode;
-
-			$("nav li").removeClass("active");
-			$(parent).addClass("active");
-			Backbone.history.saveLocation(location);
+		$(".container").delegate("li a", "click", function(evt){
 			evt.preventDefault();
-		}, qwery);	
+			
+			var location = $(this).attr("href"),
+				parent = $(this).parent();
+
+			$(".container li").removeClass("active");
+			parent.addClass("active");
+			
+			Backbone.history.saveLocation(location);
+			Backbone.history.loadUrl(location);
+		});	
 	});
 })(this);

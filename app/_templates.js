@@ -1,6 +1,6 @@
 FD.templates = {
 	fontView: _.template([
-		'<div class="<%= active ? \'active"\' : \'\' %>" style="font-family: \'<%= name %>\';" tabindex="0">',
+		'<div class="<%= active ? \'active\' : \'\' %>" style="font-family: \'<%= name %>\';" tabindex="0">',
 			'<span><%= name %></span>',
 			'<div class="info01" tabindex="0">',
 				'<ul>',
@@ -27,7 +27,7 @@ FD.templates = {
 				'</div>',
 			'</h2>',
 			'<p class="preview" style="font-family: <%= name %>-subset">AaBbCcDd</p>',
-			'<a class="button" href="http://dev.fontdragr.com/gallery/<%= name %>/index.jsonp" id="<%= name %>" data-font="<%= name %>">Load <%= name %></a>',
+			'<a class="button" href="http://dev.fontdragr.com/gallery/<%= name %>/" draggable="true" id="<%= name %>" data-font="<%= name %>">Load <%= name %></a>',
 		'</div>'
 	].join(''))
 };
