@@ -6,22 +6,28 @@
  * http://www.fontdragr.com/license.txt
 */
 
+/* Bookmarklet code
+** javascript:(function(d){var s=d.createElement('script'),h=d.head||d.getElementsByTagName('head')[0];s.src='http://labs.thecssninja.com/font_dragr/dev/bookmarklet/fd-script.js';h.appendChild(s);})(document);
+*/
+
 var FD = FD || {};
 
 (function(win, doc){
 	
-	var html = '<div id=fontdragr><div class=logo>fd</div><label>Fonts:<select id=fd-fonts><option value=sans-serif>Drag and drop a font</select></label><label>Selector:<input id=fd-selector placeholder="e.g. body > p"></label><button id=fd-selector-btn>Apply</button><div id=fd-handle></div></div>', //<link rel=stylesheet type="text/css" id=fd-styles href=style.css>
+	var html = '<div id=fontdragr><div class=logo>fd</div><label>Fonts:<select id=fd-fonts><option value=sans-serif>Drag and drop a font</select></label><label>Selector:<input id=fd-selector placeholder="e.g. body > p"></label><button id=fd-selector-btn>Apply</button><div id=fd-handle></div></div>',
 		body = doc.body,
 		div = doc.createElement("div"),
 		link = doc.createElement("link"),
+		ss = doc.createElement("style"),
 		selector, selectorVal, fonts, button, handle, fontFaceStyle, currentFont, fontdragr, currentSelector;
 		
 	function setup() {
 		div.innerHTML = html;
 		
-		link.href="style.css";
+		link.href="http://labs.thecssninja.com/font_dragr/dev/bookmarklet/style.css";
 		link.rel = "stylesheet";
 		div.appendChild(link);
+		div.appendChild(ss);
 				
 		body.appendChild(div);
 		
@@ -41,9 +47,9 @@ var FD = FD || {};
 		
 		//Load qwery as needed
 		if(!("querySelectorAll" in doc)) {
-			var script = document.createElement("script");
+			var script = doc.createElement("script");
 			
-			script.src = "qwery.js";
+			script.src = "http://labs.thecssninja.com/font_dragr/dev/bookmarklet/qwery.js";
 			body.appendChild(script);
 		}
 		FD.ltIE9 = (function(){
@@ -109,13 +115,12 @@ var FD = FD || {};
 		}
 		
 		data = null;
-		dt.clearData();
 	}
 	
 	function buildFontListItem( event, name, size, data ) {
 		var option = document.createElement('option'),
 			selectLen = fonts.length,
-			styleRef = link.sheet || link.styleSheet;
+			styleRef = ss.sheet || ss.styleSheet;
 		
 		// If file system drag and drop we don't pass any arguments, we get info from the event.
 		if(!!event) {
@@ -204,7 +209,7 @@ var FD = FD || {};
 	function toggle() {
 		var compStyle = parseInt((window.getComputedStyle ? getComputedStyle(fontdragr, null) : fontdragr.currentStyle)['height'],10);
 		
-		fontdragr.className = compStyle === 0 ? "" : "fd-hidden";
+		fontdragr.className = compStyle <= 15 ? "" : "fd-hidden";
 	}
 	
 	function parseDataFont( data ) {
