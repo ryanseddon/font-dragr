@@ -31,7 +31,7 @@
 }
 .toolbox-ready header {
 	border-bottom-color: #BB5316;
-	background: #394C5F url(gr_pattern.gif) 0 0 repeat;
+	background: #394C5F url(../assets/gr_pattern.gif) 0 0 repeat;
 }
 	.toolbox-ready header .container .logo {
 		background-color: #BB5316;

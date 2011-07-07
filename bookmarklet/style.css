@@ -12,6 +12,7 @@ html,body { height: 100% }
 	background: #394C5F url(data:image/gif;base64,R0lGODlhDAAMAJEAADlMXyNBXxYpOwAAACH5BAAAAAAALAAAAAAMAAwAAAIkjIBhCBYJxGtMxfROW1jn+VFe1lVcI0EphV2bq2ibF4G12HoFADs=);
 	padding: 15px;
 	position: fixed;
+	z-index: 99;
 	top: 0;
 	left: 0;
 	width: 100%;

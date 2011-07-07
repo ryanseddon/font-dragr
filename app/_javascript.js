@@ -9,7 +9,7 @@
 var FD = FD || {};
 
 (function(win){
-	FD.version = "2.0.1";
+	FD.version = "2.0.3";
 	
 	$(function(){
 		// Collections
@@ -42,8 +42,7 @@ var FD = FD || {};
 			$(".container li").removeClass("active");
 			parent.addClass("active");
 			
-			Backbone.history.saveLocation(location);
-			Backbone.history.loadUrl(location);
+			Backbone.history.navigate(location,true);
 		});	
 	});
 })(this);
