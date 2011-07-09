@@ -73,12 +73,11 @@ html,body { height: 100% }
 	cursor: pointer;
 }
 #fontdragr #fd-handle {
-	background: url(data:image/gif;base64,R0lGODlhKAAIAJECALNPFHEyDf///wAAACH5BAEAAAIALAAAAAAoAAgAAAIhhI+pyxgPo5y0RoGz3rx73oSiolnmOX3qymrju3joTGkFADs=) 0 0 no-repeat;
-	width: 40px;
-	height: 8px;
+	background: url(data:image/gif;base64,R0lGODlhKAAIAJECALNPFHEyDf///wAAACH5BAEAAAIALAAAAAAoAAgAAAIhhI+pyxgPo5y0RoGz3rx73oSiolnmOX3qymrju3joTGkFADs=) 50% 3px no-repeat;
+	width: 100%;
+	height: 15px;
 	position: absolute;
-	bottom: -11px;
-	left: 50%;
+	bottom: -15px;
 	margin: 0 0 0 -20px;
 	cursor: pointer;
 }

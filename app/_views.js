@@ -166,7 +166,7 @@ FD.FontListView = Backbone.View.extend({
 		// Create crude JSON schema validator
 		// Make sure data being parsed is valid JSON
 		try {
-			data = JSON.parse(data);
+			data = (typeof data == "string") ? JSON.parse(data) : data;
 			if(!data.error) {
 				var fontFileName = data.fontName.split("/").reverse()[0];
 					fontFileName = fontFileName.replace(/\..+$/,"");
@@ -292,7 +292,7 @@ FD.FontGalleryView = Backbone.View.extend({
 		var font, 
 			elem = $(evt.target),
 			name = elem.attr("data-font"),
-			fonturl = elem[0].href+"index.jsonp";
+			fonturl = elem[0].href+"index.json";
 		
 		_.each(this.options,function(k,i){
 			if(k.name === name) {
@@ -306,49 +306,27 @@ FD.FontGalleryView = Backbone.View.extend({
 	},
 	
 	requestFont: function (url, elem) {
-		var script,
-			head = document.head || document.getElementsByTagName("head")[0];
-		
-		//elem.parentNode.className = "loading";
-		
-		if(script = document.getElementById('jsonFontData')) {
-			script.parentNode.removeChild(script);
-			// http://neil.fraser.name/news/2009/07/27/
-			// Browsers won't garbage collect this object.
-			// So castrate it to avoid a major memory leak.
-			for (var prop in script) {
-				try { delete script[prop]; } catch(e) { }
-			}
-		}
-		
-		// Append script tag and attribute to head
-		script = document.createElement("script");
-		script.id = "jsonFontData";
-		script.src = url;
-		
-		head.appendChild(script);
+		$.getJSON(url, function(data) {
+			var font = $(elem);
+			
+			FD.fontGalleryView.fontData = JSON.stringify(data);
+			
+			font.attr("title","Drag and drop me!");
+			
+			font.bind("dragstart",function(evt) {
+				(!/*@cc_on!@*/0) ?
+					// Normal browsers
+					evt.dataTransfer.setData("text/plain", FD.fontGalleryView.fontData) :
+					// IE6-8 will only accept setData("text")
+					// setting this for every browser breaks ability to drag from different browser e.g. safari 4 to firefox 3.5 except IE7-8
+					evt.dataTransfer.setData("Text", FD.fontGalleryView.fontData);
+			});
+			
+			FD.fontListView.parseDataFonts(data);
+		});
 	},
 	
 	fontData: '',
-	
-	callback: function (data, elem) {
-		var font = $("#"+elem);
-		
-		this.fontData = data;
-		
-		font.attr("title","Drag and drop me!");
-		
-		font.bind("dragstart",function(evt) {
-			(!/*@cc_on!@*/0) ?
-				// Normal browsers
-				evt.dataTransfer.setData("text/plain", FD.fontGalleryView.fontData) :
-				// IE6-8 will only accept setData("text")
-				// setting this for every browser breaks ability to drag from different browser e.g. safari 4 to firefox 3.5 except IE7-8
-				evt.dataTransfer.setData("Text", FD.fontGalleryView.fontData);
-		});
-		
-		FD.fontListView.parseDataFonts(data);
-	},
 	
 	render: function (model) {
 		this.el = $("#gallery") || $(this.el);
