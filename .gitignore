@@ -1,0 +1,13 @@
+# Media #
+######################
+public/assets/screencast.mp4
+public/assets/screencast.ogv
+public/assets/screencast.webm
+
+# Folders #
+######################
+node_modules/*
+
+# Not sure I can share #
+########################
+public/gallery/*
