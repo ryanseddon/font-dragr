@@ -86,15 +86,6 @@ button {  width: auto; overflow: visible; }
 
 
  /* font dragr styles */
-
- /* Colour palettes 
-	  
-	    Pink Walrus:	http://www.colourlovers.com/palette/128467/Pink_Walrus
-	  Toolbox Ready:	http://www.colourlovers.com/palette/1412854/Tool_Box_Ready
-	Nude in bathtub:	http://www.colourlovers.com/palette/1412813/Nude_in_the_Bathtub
-	  Might Magenta:	http://www.colourlovers.com/palette/1412851/mighty_magenta
-	         Ronald:	http://www.colourlovers.com/palette/1412850/Ronald
- */
  
 @font-face {
     font-family: 'VomZom';
@@ -113,59 +104,59 @@ button {  width: auto; overflow: visible; }
 }
 @font-face {
     font-family: 'Strato-subset';
-    src: url('../gallery/Strato/Strato-subset.eot?') format('?'),
-        url('../gallery/Strato/Strato-subset.woff') format('woff'),
-        url('../gallery/Strato/Strato-subset.ttf') format('truetype'),
-        url('../gallery/Strato/Strato-subset.svg#Stratolinked') format('svg');
+    src: url('../Subset/gallery/Strato/Strato-subset.eot?') format('?'),
+        url('../Subset/gallery/Strato/Strato-subset.woff') format('woff'),
+        url('../Subset/gallery/Strato/Strato-subset.ttf') format('truetype'),
+        url('../Subset/gallery/Strato/Strato-subset.svg#Stratolinked') format('svg');
 }
 @font-face {
     font-family: 'Lobster-subset';
-    src: url('../gallery/Lobster/Lobster-subset.eot?') format('?'),
-        url('../gallery/Lobster/Lobster-subset.woff') format('woff'),
-        url('../gallery/Lobster/Lobster-subset.ttf') format('truetype'),
-        url('../gallery/Lobster/Lobster-subset.svg#Lobster') format('svg');
+    src: url('../Subset/gallery/Lobster/Lobster-subset.eot?') format('?'),
+        url('../Subset/gallery/Lobster/Lobster-subset.woff') format('woff'),
+        url('../Subset/gallery/Lobster/Lobster-subset.ttf') format('truetype'),
+        url('../Subset/gallery/Lobster/Lobster-subset.svg#Lobster') format('svg');
 }
 @font-face {
     font-family: 'ReenieBeanie-subset';
-    src: url('../gallery/ReenieBeanie/ReenieBeanie-subset.eot?') format('?'),
-        url('../gallery/ReenieBeanie/ReenieBeanie-subset.woff') format('woff'),
-        url('../gallery/ReenieBeanie/ReenieBeanie-subset.ttf') format('truetype'),
-        url('../gallery/ReenieBeanie/ReenieBeanie-subset.svg#ReenieBeanie') format('svg');
+    src: url('../Subset/gallery/ReenieBeanie/ReenieBeanie-subset.eot?') format('?'),
+        url('../Subset/gallery/ReenieBeanie/ReenieBeanie-subset.woff') format('woff'),
+        url('../Subset/gallery/ReenieBeanie/ReenieBeanie-subset.ttf') format('truetype'),
+        url('../Subset/gallery/ReenieBeanie/ReenieBeanie-subset.svg#ReenieBeanie') format('svg');
 }
 @font-face {
     font-family: 'Tangerine-subset';
-    src: url('../gallery/Tangerine/Tangerine_Regular-subset.eot?') format('?'),
-        url('../gallery/Tangerine/Tangerine_Regular-subset.woff') format('woff'),
-        url('../gallery/Tangerine/Tangerine_Regular-subset.ttf') format('truetype'),
-        url('../gallery/Tangerine/Tangerine_Regular-subset.svg#Tangerine') format('svg');
+    src: url('../Subset/gallery/Tangerine/Tangerine_Regular-subset.eot?') format('?'),
+        url('../Subset/gallery/Tangerine/Tangerine_Regular-subset.woff') format('woff'),
+        url('../Subset/gallery/Tangerine/Tangerine_Regular-subset.ttf') format('truetype'),
+        url('../Subset/gallery/Tangerine/Tangerine_Regular-subset.svg#Tangerine') format('svg');
 }
 @font-face {
     font-family: 'Vollkorn-subset';
-    src: url('../gallery/Vollkorn/Vollkorn_Regular-subset.eot?') format('?'),
-        url('../gallery/Vollkorn/Vollkorn_Regular-subset.woff') format('woff'),
-        url('../gallery/Vollkorn/Vollkorn_Regular-subset.ttf') format('truetype'),
-        url('../gallery/Vollkorn/Vollkorn_Regular-subset.svg#Vollkorn') format('svg');
+    src: url('../Subset/gallery/Vollkorn/Vollkorn_Regular-subset.eot?') format('?'),
+        url('../Subset/gallery/Vollkorn/Vollkorn_Regular-subset.woff') format('woff'),
+        url('../Subset/gallery/Vollkorn/Vollkorn_Regular-subset.ttf') format('truetype'),
+        url('../Subset/gallery/Vollkorn/Vollkorn_Regular-subset.svg#Vollkorn') format('svg');
 }
 @font-face {
     font-family: 'Null-subset';
-    src: url('../gallery/Null/NullFree-subset.eot?') format('?'),
-        url('../gallery/Null/NullFree-subset.woff') format('woff'),
-        url('../gallery/Null/NullFree-subset.ttf') format('truetype'),
-        url('../gallery/Null/NullFree-subset.svg#NullFreeRegular') format('svg');
+    src: url('../Subset/gallery/Null/NullFree-subset.eot?') format('?'),
+        url('../Subset/gallery/Null/NullFree-subset.woff') format('woff'),
+        url('../Subset/gallery/Null/NullFree-subset.ttf') format('truetype'),
+        url('../Subset/gallery/Null/NullFree-subset.svg#NullFreeRegular') format('svg');
 }
 @font-face {
     font-family: 'Berenika-subset';
-    src: url('../gallery/Berenika/BerenikaRegular-subset.eot?') format('?'),
-        url('../gallery/Berenika/BerenikaRegular-subset.woff') format('woff'),
-        url('../gallery/Berenika/BerenikaRegular-subset.ttf') format('truetype'),
-        url('../gallery/Berenika/BerenikaRegular-subset.svg#BerenikaRegular') format('svg');
+    src: url('../Subset/gallery/Berenika/BerenikaRegular-subset.eot?') format('?'),
+        url('../Subset/gallery/Berenika/BerenikaRegular-subset.woff') format('woff'),
+        url('../Subset/gallery/Berenika/BerenikaRegular-subset.ttf') format('truetype'),
+        url('../Subset/gallery/Berenika/BerenikaRegular-subset.svg#BerenikaRegular') format('svg');
 }
 @font-face {
     font-family: 'Ubuntu-subset';
-    src: url('../gallery/Ubuntu/ubuntu-regular-subset.eot?') format('?'),
-        url('../gallery/Ubuntu/ubuntu-regular-subset.woff') format('woff'),
-        url('../gallery/Ubuntu/ubuntu-regular-subset.ttf') format('truetype'),
-        url('../gallery/Ubuntu/ubuntu-regular-subset.svg#UbuntuRegular') format('svg');
+    src: url('../Subset/gallery/Ubuntu/ubuntu-regular-subset.eot?') format('?'),
+        url('../Subset/gallery/Ubuntu/ubuntu-regular-subset.woff') format('woff'),
+        url('../Subset/gallery/Ubuntu/ubuntu-regular-subset.ttf') format('truetype'),
+        url('../Subset/gallery/Ubuntu/ubuntu-regular-subset.svg#UbuntuRegular') format('svg');
 }
 
 .vomzom { font-family: 'VomZom'; }
@@ -258,9 +249,6 @@ body {
 	.grid .alpha{margin-left:0}
 	.grid .omega{margin-right:0}
 
-#maincontainer {
-	
-}
 .container {
 	width: 960px;
 	margin: 0 auto;
@@ -467,10 +455,7 @@ footer[role="contentinfo"] {
 		text-align: right;
 	}
 
-
-
-
-
+	
 @media all and (orientation:portrait) { 
   
 }
