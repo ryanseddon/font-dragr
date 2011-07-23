@@ -1,0 +1,9 @@
+{
+    "name": "font-dragr"
+  , "version": "2.0.3"
+  , "private": true
+  , "dependencies": {
+      "express": "2.4.0"
+    , "jade": ">= 0.0.1"
+  }
+}

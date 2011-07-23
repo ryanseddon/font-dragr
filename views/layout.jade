@@ -1,0 +1,64 @@
+!!! 5
+html(lang='en')
+  head
+    meta(charset='utf-8')
+
+    link(rel='shortcut icon', href='/favicon.ico')
+
+    title= 'font dragr \| Drag and drop font testing'
+    link(rel='stylesheet', href='/css/_styles.css')
+    link(rel='stylesheet', href='/css/wfs.css')
+  
+  //if lte IE 8
+    script
+      var FD = FD || {};
+      FD.ltIE9 = true;
+      // For discussion and comments, see: http://remysharp.com/2009/01/07/html5-enabling-script/
+      (function(){var e = "footer,header,hgroup,section".split(','),i=e.length;while(i--){document.createElement(e[i]);}})();
+
+  body.toolbox-ready
+    .maincontainer
+      header.clearfix
+        .container
+          .logo fd
+                
+          hgroup(role='heading')
+            h1 font dragr
+            h2 Drag and drop font testing
+                
+          nav
+            ul(role='tablist')
+              li.active: a(href='/') Home
+              li: a(href='editor') Editor
+              li: a(href='gallery') Gallery
+        
+      #subcontainer
+        != body
+
+      footer(role='contentinfo')
+        .grid.clearfix
+          p.colx4
+            | Copyright &copy; 2009 - 2011
+            a(href='http://www.thecssninja.com/') Ryan Seddon
+          p.colx8
+            | Licensed under
+            a(href='license.txt') MIT
+            |  \|
+            a(href='https://github.com/ryanseddon/font-dragr') Hack
+            |  \|
+            a(href='#') Donate
+            |  \|
+            a(href='#') Contact
+            |  \|
+            a(href='http://defaulterror.com/', title='The font used on this site was obtained from here') VomZom
+
+    script(src='/scripts/jquery.js')
+    script(src='/scripts/underscore.js')
+    script(src='/scripts/json2.min.js')
+    script(src='/scripts/_javascript.js')
+    script(src='/scripts/_fonts.js')
+    script(src='/scripts/_templates.js')
+    script(src='/scripts/backbone.js')
+    script(src='/scripts/_routes.js')
+    script(src='/scripts/_models-collections.js')
+    script(src='/scripts/_views.js')
