@@ -6,8 +6,10 @@ html(lang='en')
     link(rel='shortcut icon', href='/favicon.ico')
 
     title= 'font dragr \| Drag and drop font testing'
-    link(rel='stylesheet', href='/css/_styles.css')
-    link(rel='stylesheet', href='/css/wfs.css')
+    // START: Concat css
+    link(rel='stylesheet', href='/css/src/_styles.css')
+    link(rel='stylesheet', href='/css/src/wfs.css')
+    // END: Concat css
   
   //if lte IE 8
     script
@@ -52,13 +54,15 @@ html(lang='en')
             |  \|
             a(href='http://defaulterror.com/', title='The font used on this site was obtained from here') VomZom
 
-    script(src='/scripts/jquery.js')
-    script(src='/scripts/underscore.js')
-    script(src='/scripts/json2.min.js')
-    script(src='/scripts/_javascript.js')
-    script(src='/scripts/_fonts.js')
-    script(src='/scripts/_templates.js')
-    script(src='/scripts/backbone.js')
-    script(src='/scripts/_routes.js')
-    script(src='/scripts/_models-collections.js')
-    script(src='/scripts/_views.js')
+    // START: Concat scripts
+    script(src='/scripts/src/jquery.js')
+    script(src='/scripts/src/underscore.js')
+    script(src='/scripts/src/json2.js')
+    script(src='/scripts/src/_javascript.js')
+    script(src='/scripts/src/_fonts.js')
+    script(src='/scripts/src/_templates.js')
+    script(src='/scripts/src/backbone.js')
+    script(src='/scripts/src/_routes.js')
+    script(src='/scripts/src/_models-collections.js')
+    script(src='/scripts/src/_views.js')
+    // END: Concat scripts

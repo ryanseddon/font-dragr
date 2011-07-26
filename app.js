@@ -31,43 +31,22 @@ app.configure('production', function(){
 
 // Routes
 app.get('/', function(req, res){
-  res.header("Access-Control-Allow-Origin", "*");
   res.render('index', {
     layout: !req.xhr
   });
 });
 
 app.get('/editor', function(req, res){
-  res.header("Access-Control-Allow-Origin", "*");
   res.render('editor', {
     layout: !req.xhr
   });
 });
 
 app.get('/gallery', function(req, res){
-  res.header("Access-Control-Allow-Origin", "*");
   res.render('gallery', {
     layout: !req.xhr
   });
 });
-
-// Default gallery route
-/*app.get('/gallery/:font', function(req, res){
-  if(!req.xhr) {
-    res.render('gallery');
-  }
-});
-
-app.get('/gallery/:font/:style', function(req, res){
-  if(!req.xhr) {
-    res.render('gallery');
-  }
-});
-
-app.get("/fd.appcache", function(req, res){
-  res.header("Content-Type", "text/cache-manifest");
-  res.end("CACHE MANIFEST");
-});*/
 
 
 app.listen(45995);

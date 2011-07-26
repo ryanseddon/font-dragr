@@ -63,4 +63,4 @@ FD.gallery = [
 		license: "SIL Open Font License, 1.1",
 		licenseurl: "http://scripts.sil.org/OFL"
 	}
-]
+];
