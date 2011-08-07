@@ -10,7 +10,7 @@ In supporting browsers<sup><a href="#sup1">1</a></sup> you can simply drag and d
 
 The font dragr bookmarklet<sup><a href="#sup1">2</a></sup> allows you to test custom fonts on any website either from the font dragr [gallery](http://dev.fontdragr.com/gallery) or by dropping a font from your file system<sup><a href="#sup1">1</a></sup> into a page with the bookmarklet loaded.
 
-<sup name="sup1">1.</sup> Works in FF3.6+, Chrome 6+ and IE10 PP2.
+<sup name="sup1">1.</sup> Works in FF3.6+, Chrome 6+ and IE10 PP2.<br />
 <sup name="sup2">2.</sup> Github doesn't like bookmarklets so go to the [font dragr](http://dev.fontdragr.com/) homepage and get it off there.
 
 ## Run it locally
