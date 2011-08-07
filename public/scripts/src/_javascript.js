@@ -1,7 +1,7 @@
-/*
+/*!
  * font dragr v2
- * http://www.thecssninja.com/javascript/font-dragr2
- * Copyright (c) 2011 Ryan Seddon 
+ * https://github.com/ryanseddon/font-dragr
+ * Copyright (c) 2009 - 2011 Ryan Seddon 
  * released under the MIT License
  * http://www.fontdragr.com/license.txt
 */
@@ -9,7 +9,7 @@
 var FD = FD || {};
 
 (function(win){
-	FD.version = "2.0.5";
+	FD.version = "2.0.7";
 	
 	$(function(){
 		// Collections
