@@ -4,9 +4,17 @@ public/assets/screencast.mp4
 public/assets/screencast.ogv
 public/assets/screencast.webm
 
+# Files #
+######################
+public/css/_styles.min.css
+public/scripts/_scripts.min.js
+
 # Folders #
 ######################
 node_modules/*
+deploy/*
+logs/*
+pids/*
 
 # Not sure I can share #
 ########################

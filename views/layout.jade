@@ -11,12 +11,12 @@ html(lang='en')
     link(rel='stylesheet', href='/css/src/wfs.css')
     // END: Concat css
   
-  //if lte IE 8
-    script
-      var FD = FD || {};
-      FD.ltIE9 = true;
-      // For discussion and comments, see: http://remysharp.com/2009/01/07/html5-enabling-script/
-      (function(){var e = "footer,header,hgroup,section".split(','),i=e.length;while(i--){document.createElement(e[i]);}})();
+    //if lte IE 8
+      script
+        var FD = FD || {};
+        FD.ltIE9 = true;
+        // For discussion and comments, see: http://remysharp.com/2009/01/07/html5-enabling-script/
+        (function(){var e = "footer,header,hgroup,section".split(','),i=e.length;while(i--){document.createElement(e[i]);}})();
 
   body.toolbox-ready
     .maincontainer
@@ -66,3 +66,9 @@ html(lang='en')
     script(src='/scripts/src/_models-collections.js')
     script(src='/scripts/src/_views.js')
     // END: Concat scripts
+	
+    script
+      var _gaq=[['_setAccount','UA-4638292-2'],['_trackPageview']];
+      (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
+      g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+      s.parentNode.insertBefore(g,s)}(document,'script'));

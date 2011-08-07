@@ -24,7 +24,7 @@ var FD = FD || {};
 	function setup() {
 		div.innerHTML = html;
 		
-		link.href="http://dev.fontdragr.com/bookmarklet/style.css";
+		link.href="http://fontdragr.com/bookmarklet/style.css";
 		link.rel = "stylesheet";
 		div.appendChild( link );
 		div.appendChild( ss );
@@ -49,7 +49,7 @@ var FD = FD || {};
 		if(!( "querySelectorAll" in doc )) {
 			var script = doc.createElement( "script" );
 			
-			script.src = "http://labs.thecssninja.com/font_dragr/dev/bookmarklet/qwery.js";
+			script.src = "http://fontdragr.com/bookmarklet/qwery.js";
 			body.appendChild( script );
 		}
 		FD.ltIE9 = (function(){
