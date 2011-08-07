@@ -35,7 +35,7 @@ See something that can be improved, want a feature added or you've found a bug?
 
 ### Found a bug or want to request a feature?
 
-1. File an issue with as much information as possible in the [issue section](issues) of the project
+1. File an issue with as much information as possible in the [issue section](/ryanseddon/font-dragr/issues) of the project
 
 ## License
 
