@@ -8,7 +8,7 @@ In supporting browsers<sup><a href="#sup1">1</a></sup> you can simply drag and d
 
 ## Bookmarklet
 
-The [font dragr bookmarklet](javascript:(function(d){var%20s=d.createElement('script'),h=d.head||d.getElementsByTagName('head')[0];s.src='http://fontdragr.com/bookmarklet/fd-script.js';h.appendChild(s);})(document);) allows you to test custom fonts on any website either from the font dragr [gallery](http://dev.fontdragr.com/gallery) or by dropping a font from your file system<sup><a href="#sup1">1</a></sup> into a page with the bookmarklet loaded.
+The <a href="javascript:(function(d){var%20s=d.createElement('script'),h=d.head||d.getElementsByTagName('head')[0];s.src='http://fontdragr.com/bookmarklet/fd-script.js';h.appendChild(s);})(document);">font dragr bookmarklet</a> allows you to test custom fonts on any website either from the font dragr [gallery](http://dev.fontdragr.com/gallery) or by dropping a font from your file system<sup><a href="#sup1">1</a></sup> into a page with the bookmarklet loaded.
 
 <sup name="sup1">1.</sup> Works in FF3.6+, Chrome 6+ and IE10 PP2.
 
@@ -34,7 +34,7 @@ See something that can be improved, want a feature added or you've found a bug?
 
 ### Found a bug or want to request a feature?
 
-1. File an issue with as much information as possible in the [issue section](/issues) of the project
+1. File an issue with as much information as possible in the [issue section](issues) of the project
 
 ## License
 
