@@ -1,9 +1,3 @@
-# Media #
-######################
-public/assets/screencast.mp4
-public/assets/screencast.ogv
-public/assets/screencast.webm
-
 # Files #
 ######################
 public/css/_styles.min.css
