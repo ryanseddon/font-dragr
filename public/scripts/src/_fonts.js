@@ -9,8 +9,8 @@ FD.gallery = [
 	},{
 		name: "Strato",
 		size: "58kb",
-		author: "Patrick Carpentier",
-		authorurl: "http://cargocollective.com/Sozoo",
+		author: "Bastien Sozoo",
+		authorurl: "http://sozoo.fr/",
 		license: "SIL Open Font License, 1.1",
 		licenseurl: "http://scripts.sil.org/OFL"
 	},{

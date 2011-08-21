@@ -106,7 +106,7 @@ FD.FontListView = Backbone.View.extend({
 			data = dt.getData(/*@cc_on!@*/0 ? "Text" : "text/plain")
 			files = dt.files || false;
 		
-		if(files && !data) {
+		if(files) {
 			this.parseDroppedFonts(files);
 		} else {
 			this.parseDataFonts(data);

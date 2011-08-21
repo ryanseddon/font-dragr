@@ -8,6 +8,7 @@
 
 }
 html,body { height: 100% }
+#fontdragr_container { position: relative; z-index: 99999; }
 #fontdragr {
 	background: #394C5F url(data:image/gif;base64,R0lGODlhDAAMAJEAADlMXyNBXxYpOwAAACH5BAAAAAAALAAAAAAMAAwAAAIkjIBhCBYJxGtMxfROW1jn+VFe1lVcI0EphV2bq2ibF4G12HoFADs=);
 	padding: 15px;

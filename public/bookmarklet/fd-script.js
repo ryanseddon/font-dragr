@@ -28,6 +28,7 @@ var FD = FD || {};
 		link.rel = "stylesheet";
 		div.appendChild( link );
 		div.appendChild( ss );
+		div.id = "fontdragr_container";
 				
 		body.appendChild( div );
 		

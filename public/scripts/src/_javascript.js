@@ -9,7 +9,7 @@
 var FD = FD || {};
 
 (function(win){
-	FD.version = "2.0.8";
+	FD.version = "2.0.10";
 	
 	$(function(){
 		// Collections
