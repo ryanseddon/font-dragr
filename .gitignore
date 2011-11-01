@@ -2,6 +2,7 @@
 ######################
 public/css/_styles.min.css
 public/scripts/_scripts.min.js
+public/scripts/.DS_Store
 
 # Folders #
 ######################

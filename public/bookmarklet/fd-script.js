@@ -7,7 +7,7 @@
 */
 
 /* Bookmarklet code
-** javascript:(function(d){var%20s=d.createElement('script'),h=d.head||d.getElementsByTagName('head')[0];s.src='http://dev.fontdragr.com/bookmarklet/fd-script.js';h.appendChild(s);})(document);
+** javascript:(function(d){var%20s=d.createElement('script'),h=d.head||d.getElementsByTagName('head')[0];s.src='http://fontdragr.com/bookmarklet/fd-script.js';h.appendChild(s);})(document);
 */
 
 var FD = FD || {};

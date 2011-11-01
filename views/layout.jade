@@ -2,6 +2,7 @@
 html(lang='en')
   head
     meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, minimum-scale=1.0, maximum-scale=1.0')
 
     link(rel='shortcut icon', href='/favicon.ico')
 
@@ -9,6 +10,7 @@ html(lang='en')
     // START: Concat css
     link(rel='stylesheet', href='/css/src/_styles.css')
     link(rel='stylesheet', href='/css/src/wfs.css')
+    link(rel='stylesheet', href='/css/src/_media-queries.css')
     // END: Concat css
   
     //if lte IE 8
@@ -18,7 +20,7 @@ html(lang='en')
         // For discussion and comments, see: http://remysharp.com/2009/01/07/html5-enabling-script/
         (function(){var e = "footer,header,hgroup,section".split(','),i=e.length;while(i--){document.createElement(e[i]);}})();
 
-  body.toolbox-ready
+  body
     .maincontainer
       header.clearfix
         .container
