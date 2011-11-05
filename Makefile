@@ -5,15 +5,16 @@ master-css =			\    link(rel='stylesheet', href='/css/$(css-deploy-build)')
 master-js =				\    script(src='/scripts/$(js-deploy-build)')
 
 deploy-folder =			deploy/
-public-folder =			public/
-views-folder =			views/
+public-folder =			public
+views-folder =			views
 
 css-path =				public/css/
 css-deploy-path =		$(deploy-folder)$(css-path)
 css-filename =			_styles.min.css
 css-build =				$(css-path)$(css-filename)
 css-prereq =			$(css-path)src/_styles.css \
-						$(css-path)src/wfs.css
+						$(css-path)src/wfs.css \
+						$(css-path)src/_media-queries.css
 
 
 js-path =				public/scripts/
@@ -42,15 +43,16 @@ install: js-deploy-build = `cat $(js-build) | /usr/bin/openssl sha1 | cut -c1-8`
 install: all
 	@mkdir $(deploy-folder)
 	@cp $(app) $(deploy-folder)
-	@cp -rf $(public-folder) $(deploy-folder)
-	@cp -rf $(views-folder) $(deploy-folder)
+	@cp -R $(public-folder) $(deploy-folder)
+	@cp -R $(views-folder) $(deploy-folder)
 	@rm -rf $(deploy-folder)$(css-path)src
 	@rm -rf $(deploy-folder)$(js-path)src
+	@pwd
 	@cp $(css-build) $(css-deploy-path)$(css-deploy-build)
 	@cp $(js-build) $(js-deploy-path)$(js-deploy-build)
 	@echo "Linking to updated CSS and JavaScript…\t\c"
-	@sed -i "/\/\/ START: Concat css/,/\/\/ END: Concat css/c$(master-css)" $(master-file-deploy)
-	@sed -i "/\/\/ START: Concat scripts/,/\/\/ END: Concat scripts/c$(master-js)" $(master-file-deploy)
+	@gsed -i "/\/\/ START: Concat css/,/\/\/ END: Concat css/c$(master-css)" $(master-file-deploy)
+	@gsed -i "/\/\/ START: Concat scripts/,/\/\/ END: Concat scripts/c$(master-js)" $(master-file-deploy)
 	@echo "[ Done ]"
 	@echo "Installation is complete."
 
