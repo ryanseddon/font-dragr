@@ -18,7 +18,7 @@ FD.Font = Backbone.Model.extend({
 	}
 });
 
-FD.Fonts = Backbone.Collection.extend({ 
+FD.Fonts = Backbone.Collection.extend({
 	model: FD.Font,
 	
 	initialize: function ( attributes ) {

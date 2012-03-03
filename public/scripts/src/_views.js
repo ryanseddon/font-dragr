@@ -17,7 +17,7 @@ FD.FontView = Backbone.View.extend({
 	template: FD.templates.fontView,
 	
 	handleFontChange: function (e) {
-		var evt = e || event
+		var evt = e || event,
 			elem = $(this.el),
 			key = e.which,
 			type = e.type,
@@ -30,6 +30,8 @@ FD.FontView = Backbone.View.extend({
 		elem.addClass("active");
 		
 		FD.fontEditorView.updateFont(model.get("name"));
+
+		//console.log("%s font is now active", model.get("name"));
 	},
 	
 	unactivateFont: function () {
@@ -54,7 +56,7 @@ FD.FontListView = Backbone.View.extend({
 	tagName: "ul",
 	
 	initialize: function () {
-		_.bindAll(this, 'addFont', 'render', 'handleDrop', 'preventActions');
+		_.bindAll(this);
 		
 		FD.fonts.bind("add", this.addFont);
 		FD.fonts.add({
@@ -66,12 +68,12 @@ FD.FontListView = Backbone.View.extend({
 			licenseurl: "http://defaulterror.com/typo.htm#Font%20License%20Information"
 		});
 		
-		$("body").bind({
-		  drop: this.handleDrop,
-		  dragenter: function(e){ e.preventDefault(); },
-		  dragover: function(e){ e.preventDefault(); }
+		$("body").on({
+			drop: this.handleDrop,
+			dragenter: function(e){ e.preventDefault(); },
+			dragover: function(e){ e.preventDefault(); }
 		});
-	},	
+	},
 	
 	addFont: function (font) {
 		var fontView = new FD.FontView({model: font}),
@@ -103,7 +105,7 @@ FD.FontListView = Backbone.View.extend({
 	handleDrop: function (e) {
 		var	dt = e.dataTransfer,
 			// IE doesn't like anything other than "Text"
-			data = dt.getData(/*@cc_on!@*/0 ? "Text" : "text/plain")
+			data = dt.getData(/*@cc_on!@*/0 ? "Text" : "text/plain"),
 			files = dt.files || false;
 		
 		if(files) {
@@ -148,13 +150,13 @@ FD.FontListView = Backbone.View.extend({
 					reader.name = droppedFileName;
 					reader.size = droppedFileSize;
 					
-					/* 
-					   Chrome 6 dev can't do DOM2 event based listeners on the FileReader object so fallback to DOM0
-					   http://code.google.com/p/chromium/issues/detail?id=48367
-					   reader.addEventListener("loadend", FD.App.addFontFace(event);, false);
+					/*
+						Chrome 6 dev can't do DOM2 event based listeners on the FileReader object so fallback to DOM0
+						http://code.google.com/p/chromium/issues/detail?id=48367
+						reader.addEventListener("loadend", FD.App.addFontFace(event);, false);
 					*/
 					reader.onloadend = function (event) { FD.fontListView.addFontFace(event); };
-					reader.readAsDataURL(file); 
+					reader.readAsDataURL(file);
 				}
 			} else {
 				alert("Invalid file extension. Will only accept ttf, otf or woff font files");
@@ -289,7 +291,7 @@ FD.FontGalleryView = Backbone.View.extend({
 	},
 	
 	addFont: function (evt) {
-		var font, 
+		var font,
 			elem = $(evt.target),
 			name = elem.attr("data-font"),
 			fonturl = elem[0].href+"index.json";
@@ -299,6 +301,8 @@ FD.FontGalleryView = Backbone.View.extend({
 				font = k;
 			}
 		});
+
+		//console.log("%s font added", name);
 		
 		this.requestFont(fonturl, elem);
 		

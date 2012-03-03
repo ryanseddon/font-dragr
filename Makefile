@@ -47,7 +47,6 @@ install: all
 	@cp -R $(views-folder) $(deploy-folder)
 	@rm -rf $(deploy-folder)$(css-path)src
 	@rm -rf $(deploy-folder)$(js-path)src
-	@pwd
 	@cp $(css-build) $(css-deploy-path)$(css-deploy-build)
 	@cp $(js-build) $(js-deploy-path)$(js-deploy-build)
 	@echo "Linking to updated CSS and JavaScript…\t\c"
