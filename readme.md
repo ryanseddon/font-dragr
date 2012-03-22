@@ -24,6 +24,12 @@ You can get a copy of font dragr running on your local environment following the
 
 This project doesnt include the gallery files found on font dragr live site but dropping font files from your file system will work fine in supporting browsers.
 
+## Build with Source Map support
+
+[Source maps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) allow you to map your combined files back to their original state. Using the `MakefileSourcemap` make file this will do a build using Closure Compiler which can generate source maps. See [dev.fontdragr.com](http://dev.fontdragr.com) in Chrome Canary or WebKit Nightly with Source Maps enabled.
+
+Run `make -f MakefileSourcemap clean install` and it'll do some extra stuff to get source map support added in. 
+
 ## Contribute
 
 See something that can be improved, want a feature added or you've found a bug?
