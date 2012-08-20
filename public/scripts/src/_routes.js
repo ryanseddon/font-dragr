@@ -1,7 +1,7 @@
 FD.AppRouter = Backbone.Router.extend({
 
 	routes: {
-		"/": "home",
+		"": "home",
 		"editor": "editor",
 		"gallery": "gallery"
 	},
