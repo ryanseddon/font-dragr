@@ -1,0 +1,201 @@
+section#banner.clearfix(role='banner')
+  .container.grid
+    h1#fontname.colx8(ng-style="{ \'font-family\': font.activeFont }") {{font.activeFont}}
+
+    aside.colx4(role='complementary')
+      div(fd-font-list='')
+
+#wfs.grid(contenteditable='true', ng-style="{ \'font-family\': font.activeFont }")
+  section.colx6(role='region')
+    h2
+      | Text sample 
+      span &#8211; CSS font-size (px) with 1.4em line-height
+    
+    p.s.s18
+      span 18
+      | Is not the best kind of originality that which comes after a sound apprenticeship? That which shall prove to be the blending of a firm conception of, &#8220;useful precedent&#8221;&hellip;
+
+    p.s.s14
+      span 14
+      | Is not the best kind of originality that which comes after a sound apprenticeship? That which shall prove to be the blending of a firm conception of, &#8220;useful precedent&#8221; and the progressive tendencies of&hellip;
+
+    p.s.s12
+      span 12
+      | Is not the best kind of originality that which comes after a sound apprenticeship? That which shall prove to be the blending of a firm conception of, &#8220;useful precedent&#8221; and the progressive tendencies of an able mind. For, let a man be as able &amp; original&hellip;
+
+    p.s.s11
+      span 11
+      | Is not the best kind of originality that which comes after a sound apprenticeship? That which shall prove to be the blending of a firm conception of, &#8220;useful precedent&#8221; and the progressive tendencies of an able mind. For, let a man be as able &amp; original as he may&hellip;
+
+    p.s.s10
+      span 10
+      | Is not the best kind of originality that which comes after a sound apprenticeship? That which shall prove to be the blending of a firm conception of, &#8220;useful precedent&#8221; and the progressive tendencies of an able mind. For, let a man be as able &amp; original as he may, he can&#8217;t afford to discard knowledge of what&hellip;
+
+    p.s.s9
+      span 9
+      | Is not the best kind of originality that which comes after a sound apprenticeship? That which shall prove to be the blending of a firm conception of, &#8220;useful precedent&#8221; and the progressive tendencies of an able mind. For, let a man be as able &amp; original as he may, he can&#8217;t afford to discard knowledge of what has gone before or what is now going&hellip;
+
+  section.colx6.charset(role='region')
+    h2 Characters
+    p.s.s56
+      | A&#8201;B&#8201;C&#8201;D&#8201;E&#8201;F&#8201;G&#8201;H&#8201;I&#8201;J&#8201;K&#8201;L&#8201;M&#8201;N&#8201;O&#8201;P&#8201;Q&#8201;R&#8201;S&#8201;T&#8201;U&#8201;V&#8201;W&#8201;X&#8201;Y&#8201;Z
+      br
+      | a&#8201;b&#8201;c&#8201;d&#8201;e&#8201;f&#8201;g&#8201;h&#8201;i&#8201;j&#8201;k&#8201;l&#8201;m&#8201;n&#8201;o&#8201;p&#8201;q&#8201;r&#8201;s&#8201;t&#8201;u&#8201;v&#8201;w&#8201;x&#8201;y&#8201;z
+      br
+      | 1&#8201;2&#8201;3&#8201;4&#8201;5&#8201;6&#8201;7&#8201;8&#8201;9&#8201;0&#8201;&amp;&#8201;@&#8201;.&#8201;,&#8201;?&#8201;!&#8201;&#8217;&#8201;&#8220;&#8201;&#8221;&#8201;(&#8201;)
+
+  section.colx12
+    h2 Body size comparison
+    .bodysize
+      table
+        tr
+          th.fontname Font name
+          th
+            | Arial
+            a(href='http://www.codestyle.org/servlets/FontStack?stack=Arial,Helvetica&generic=sans-serif') stack
+          th
+            | Times
+            a(href='http://www.codestyle.org/servlets/FontStack?stack=Times+New+Roman,Times&generic=serif') stack
+          th
+            | Georgia
+            a(href='http://www.codestyle.org/servlets/FontStack?stack=Georgia,New+Century+Schoolbook,Nimbus+Roman+No9+L&generic=serif') stack
+        tr
+          td
+            span Body
+          td.tf.typeface2
+            span Body
+          td.tf.typeface3
+            span Body
+          td.tf.typeface4
+            span Body
+
+  section.colx12
+    h2
+      | Grayscale
+      span &#8211; CSS hex color
+
+    .grayscale.clearfix
+      .colx6.white.alpha
+        p.c000
+          span #000
+          | The best kind of originality is that which comes after a sound apprenticeship, that which shall prove to be the blending of a firm conception of useful precedent and the progressive tendencies of an able mind. For, let a man be as able and original as he may, he cannot afford to
+        p.c333
+          span #333
+          | The best kind of originality is that which comes after a sound apprenticeship, that which shall prove to be the blending of a firm conception of useful precedent and the progressive tendencies of an able mind. For, let a man be as able and original as he may, he cannot afford to
+        p.c666
+          span #666
+          | The best kind of originality is that which comes after a sound apprenticeship, that which shall prove to be the blending of a firm conception of useful precedent and the progressive tendencies of an able mind. For, let a man be as able and original as he may, he cannot afford to
+        p.c999
+          span #999
+          | The best kind of originality is that which comes after a sound apprenticeship, that which shall prove to be the blending of a firm conception of useful precedent and the progressive tendencies of an able mind. For, let a man be as able and original as he may, he cannot afford to
+        p.cCCC
+          span #CCC
+          | The best kind of originality is that which comes after a sound apprenticeship, that which shall prove to be the blending of a firm conception of useful precedent and the progressive tendencies of an able mind. For, let a man be as able and original as he may, he cannot afford to
+      .colx6.black.omega
+        p.cFFF
+          span #FFF
+          | The best kind of originality is that which comes after a sound apprenticeship, that which shall prove to be the blending of a firm conception of useful precedent and the progressive tendencies of an able mind. For, let a man be as able and original as he may, he cannot afford to
+        p.cCCC
+          span #CCC
+          | The best kind of originality is that which comes after a sound apprenticeship, that which shall prove to be the blending of a firm conception of useful precedent and the progressive tendencies of an able mind. For, let a man be as able and original as he may, he cannot afford to
+        p.c999
+          span #999
+          | The best kind of originality is that which comes after a sound apprenticeship, that which shall prove to be the blending of a firm conception of useful precedent and the progressive tendencies of an able mind. For, let a man be as able and original as he may, he cannot afford to
+        p.c666
+          span #666
+          | The best kind of originality is that which comes after a sound apprenticeship, that which shall prove to be the blending of a firm conception of useful precedent and the progressive tendencies of an able mind. For, let a man be as able and original as he may, he cannot afford to
+        p.c333
+          span #333
+          | The best kind of originality is that which comes after a sound apprenticeship, that which shall prove to be the blending of a firm conception of useful precedent and the progressive tendencies of an able mind. For, let a man be as able and original as he may, he cannot afford to
+
+  section.ulc.clearfix
+    section.colx12
+      h2
+        | Size
+        span &#8211; CSS font-size (px)
+      p.s.s36
+        span 36
+        span.text Pack my box with five dozen liquor jugs.
+      p.s.s30
+        span 30
+        span.text Pack my box with five dozen liquor jugs.
+      p.s.s24
+        span 24
+        span.text Pack my box with five dozen liquor jugs.
+
+    section.colx8
+      p.s.s21
+        span 21
+        span.text Pack my box with five dozen liquor jugs.
+      p.s.s18
+        span 18
+        span.text Pack my box with five dozen liquor jugs.
+    section.colx4.upp
+      p.s.s9
+        span 9
+        span.text Pack my box with five dozen liquor jugs
+      p.s.s10
+        span 10
+        span.text Pack my box with five dozen liquor jugs
+
+    .clearfix
+
+    section.colx6
+      p.s.s16
+        span 16
+        span.text Pack my box with five dozen liquor jugs.
+      p.s.s14
+        span 14
+        span.text Pack my box with five dozen liquor jugs.
+      p.s.s13
+        span 13
+        span.text Pack my box with five dozen liquor jugs.
+    section.colx6.upp
+      p.s.s11
+        span 11
+        span.text Pack my box with five dozen liquor jugs
+      p.s.s12
+        span 12
+        span.text Pack my box with five dozen liquor jugs
+      p.s.s13
+        span 13
+        span.text Pack my box with five dozen liquor jugs
+
+    .clearfix
+
+    section.colx4
+      p.s.s12
+        span 12
+        span.text Pack my box with five dozen liquor jugs.
+      p.s.s11
+        span 11
+        span.text Pack my box with five dozen liquor jugs.
+      p.s.s10
+        span 10
+        span.text Pack my box with five dozen liquor jugs.
+      p.s.s9
+        span 9
+        span.text Pack my box with five dozen liquor jugs.
+    section.colx8.upp
+      p.s.s14
+        span 14
+        span.text Pack my box with five dozen liquor jugs
+      p.s.s16
+        span 16
+        span.text Pack my box with five dozen liquor jugs
+      p.s.s18
+        span 18
+        span.text Pack my box with five dozen liquor jugs
+
+    .clearfix
+
+    section.colx12.upp
+      p.s.s21
+        span 21
+        span.text Pack my box with five dozen liquor jugs
+      p.s.s24
+        span 24
+        span.text Pack my box with five dozen liquor jugs
+      p.s.s30
+        span 30
+        span.text Pack my box with five dozen liquor jugs
