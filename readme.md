@@ -2,7 +2,7 @@
 
 ## Introduction
 
-[Font dragr](http://fontdragr.com/) is a `@font-face` testing web app that allows your to test fonts right in the browser. Whether it's from your file system or from the font dragr gallery you can easily test in multiple browsers how a font will look.
+[Font dragr](http://fontdragr.com/) is a `@font-face` testing web app that allows you to test fonts right in the browser. Whether it's from your file system or from the font dragr gallery you can easily test in multiple browsers how a font will look.
 
 In supporting browsers<sup><a href="#sup1">1</a></sup> you can simply drag and drop a font file right into the browser and it will render for you to test away.
 
