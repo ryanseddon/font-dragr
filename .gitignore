@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Files #
 ######################
 public/css/_styles.min.css
@@ -15,3 +16,10 @@ pids/*
 # Not sure I can share #
 ########################
 public/gallery/*
+=======
+node_modules
+dist
+.tmp
+.sass-cache
+app/components
+>>>>>>> angular

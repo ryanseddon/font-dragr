@@ -2,7 +2,8 @@
 
 ## Introduction
 
-[Font dragr](http://dev.fontdragr.com/) is a `@font-face` testing web app that allows your to test fonts right in the browser. Whether it's from your file system or from the font dragr gallery you can easily test in multiple browsers how a font will look.
+[Font dragr](http://fontdragr.com/) is a `@font-face` testing web app that allows your to test fonts right in the browser. Whether it's from your file system or from the font dragr gallery you can easily test in multiple browsers how a font will look.
+>>>>>>> angular
 
 In supporting browsers<sup><a href="#sup1">1</a></sup> you can simply drag and drop a font file right into the browser and it will render for you to test away.
 
@@ -17,18 +18,15 @@ The font dragr bookmarklet<sup><a href="#sup1">2</a></sup> allows you to test cu
 
 You can get a copy of font dragr running on your local environment following these steps:
 
-1. Install [Node.js](https://github.com/joyent/node) and [Express with Jade](https://github.com/visionmedia/express) follow the instructions on each project page.
-2. Run `make clean install` to build the project. This will create a deploy folder
-3. Run `node app.js' inside the deploy folder
-4. View 127.0.0.1:45995 on your machine to see it working.
+1. Install [Node.js](nodejs.org), [Yeoman v1.0](http://yeoman.io) and [PhantomJS](http://phantomjs.org/).
+2. Run `grunt server` to spin up instance of font dragr.
+3. Run `grunt test` to run unit tests.
 
 This project doesnt include the gallery files found on font dragr live site but dropping font files from your file system will work fine in supporting browsers.
 
 ## Build with Source Map support
 
-[Source maps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) allow you to map your combined files back to their original state. Using the `MakefileSourcemap` make file this will do a build using Closure Compiler which can generate source maps. See [dev.fontdragr.com](http://dev.fontdragr.com) in Chrome Canary or WebKit Nightly with Source Maps enabled.
-
-Run `make -f MakefileSourcemap clean install` and it'll do some extra stuff to get source map support added in. 
+[Source maps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) allow you to map your combined files back to their original state. I will add support very soon using uglifyjs.
 
 ## Contribute
 
@@ -41,8 +39,11 @@ See something that can be improved, want a feature added or you've found a bug?
 
 ### Found a bug or want to request a feature?
 
-1. File an issue with as much information as possible in the [issue section](/ryanseddon/font-dragr/issues) of the project
+* File an issue with as much information as possible in the [issue section](/ryanseddon/font-dragr/issues) of the project
+* Hit me up on twitter [@ryanseddon](https://twitter.com/ryanseddon)
 
 ## License
 
-Font dragr is licensed under MIT so you can pretty much do as you please with it. See [license](http://fontdragr.com/license.txt) file.
+Copyright 2013, Ryan Seddon
+This content is released under the MIT license
+http://ryanseddon.mit-license.org

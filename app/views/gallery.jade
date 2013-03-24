@@ -1,0 +1,29 @@
+section#banner.clearfix(role='banner')
+  .container.grid
+    h1#fontname.colx8(ng-style="{ \'font-family\': font.activeFont }") {{font.activeFont}}
+
+    aside.colx4(role='complementary')
+      div(fd-font-list='')
+
+.content.grid.gallery.clearfix
+
+  div.colx4.item(ng-repeat="font in gallery")
+    
+    h2 {{ font.name }}
+        div.info01(tabindex="0")
+            ul
+                li.title
+                    strong {{ font.name }}
+                li
+                    strong Size: 
+                    {{ font.size }}
+                li
+                    strong Author:
+                    a(ng-href="{{ font.authorurl }}") {{ font.author }}
+                li
+                    strong License:
+                    a(ng-href="{{ font.licenseurl }}") {{ font.license }}
+
+    p.preview(ng-style="{'font-family': font.name + '-subset'}") AaBbCcDd
+    a.button(id="{{font.name}}", draggable="true", fd-tap="loadFont('gallery/{{font.name}}')") 
+        | Load {{ font.name }}
