@@ -1,25 +1,5 @@
-<<<<<<< HEAD
-# Files #
-######################
-public/css/_styles.min.css
-public/scripts/_scripts.min.js
-public/scripts/_scripts.min.js.map
-public/scripts/.DS_Store
-
-# Folders #
-######################
-node_modules/*
-deploy/*
-logs/*
-pids/*
-
-# Not sure I can share #
-########################
-public/gallery/*
-=======
 node_modules
 dist
 .tmp
 .sass-cache
 app/components
->>>>>>> angular
