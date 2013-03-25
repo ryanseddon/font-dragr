@@ -95,6 +95,10 @@ module.exports = function (grunt) {
         }
       }
     },
+	inlineviews:{
+		files:['<%= yeoman.dist %>/views/*.html'],
+		output: '<%= yeoman.dist %>/index.html'
+	},
     concat: {
       dist: {
         files: {
@@ -235,8 +239,31 @@ module.exports = function (grunt) {
     'cdnify',
     'usemin',
     'ngmin',
+    'inlineviews',
     'uglify'
   ]);
+  
+  grunt.registerTask('inlineviews', 'grab views and inline into script tags', function () {
+	var config = grunt.config.get('inlineviews'),
+		reBuildViews = /<!--\s*inlineviews\s*-->/,
+		views = [];
+
+	grunt.file.expand({filter: 'isFile'}, config.files).forEach(function (file) {
+		var body = grunt.file.read(file).replace(/\r\n\s*/g, '');
+		var wrapFile = '<script type="text/ng-template" id="path">html</script>';
+        var path = file.replace('dist/','');
+
+		grunt.log.subhead('inlined view: ' + file);
+
+		wrapFile = wrapFile.replace(/html/, body).replace(/path/, path);
+
+		views.push(wrapFile);
+	});
+
+	var output = grunt.file.read(config.output).replace(reBuildViews, views.join('\n\t'));
+	grunt.file.write(config.output, output);
+
+  });
 
   grunt.registerTask('default', ['build']);
 };

@@ -27,6 +27,8 @@ angular.module('fdApp').controller('AppCtrl', ['$scope', '$location', '$filter',
         $scope.$emit('addFont', payload, isFile);
     };
 
+    $scope.year = (new Date()).getFullYear();
+
     $scope.addFont = function (scope, fonts, file) {
         var files,
             fileFilter = $filter('file'),

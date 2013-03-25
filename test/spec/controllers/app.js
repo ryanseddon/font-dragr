@@ -5,7 +5,7 @@ describe('Controller: AppCtrl', function () {
   // load the controller's module
   beforeEach(module('fdApp'));
 
-  var AppCtrl, scope, Font, $location;
+  var AppCtrl, scope, Font, $location, year;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope, _Font_, $location) {
@@ -14,6 +14,8 @@ describe('Controller: AppCtrl', function () {
     AppCtrl = $controller('AppCtrl', {
       $scope: scope
     });
+
+    year = (new Date()).getFullYear();
 
     $location.path = function() {
       return '/testpath';
@@ -28,6 +30,10 @@ describe('Controller: AppCtrl', function () {
 
   it('should make "VomZom" the intial active font', function () {
     expect(scope.font.activeFont).toBe("VomZom");
+  });
+
+  it('should return current year', function () {
+    expect(scope.year).toBe(year);
   });
 
   it('should return true when checking routeIs method', function () {

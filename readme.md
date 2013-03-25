@@ -18,7 +18,7 @@ The font dragr bookmarklet<sup><a href="#sup1">2</a></sup> allows you to test cu
 You can get a copy of font dragr running on your local environment following these steps:
 
 1. Install [Node.js](nodejs.org), [Yeoman v1.0](http://yeoman.io) and [PhantomJS](http://phantomjs.org/).
-2. Run 'npm install' and 'bower install --dev' to get all dependencies.
+2. Run `npm install` and `bower install --dev` to get all dependencies.
 3. Run `grunt server` to spin up instance of font dragr.
 4. Run `grunt test` to run unit tests.
 
