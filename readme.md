@@ -24,9 +24,9 @@ You can get a copy of font dragr running on your local environment following the
 
 This project doesnt include the gallery files found on font dragr live site but dropping font files from your file system will work fine in supporting browsers.
 
-## Build with Source Map support
+## Built with Source Map support
 
-[Source maps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) allow you to map your combined files back to their original state. I will add support very soon using uglifyjs.
+[Source maps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) allow you to map your combined files back to their original state.
 
 ## Contribute
 

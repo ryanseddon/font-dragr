@@ -182,10 +182,17 @@ module.exports = function (grunt) {
       dist: {
         files: {
           '<%= yeoman.dist %>/scripts/scripts.js': [
-            '<%= yeoman.dist %>/scripts/scripts.js'
+            '<%= yeoman.app %>/components/angular/angular.js',
+            '<%= yeoman.app %>/scripts/**/*.js'
           ]
         },
-        sourceMap: '<%= yeoman.dist %>/scripts/scripts.js.map'
+        options: {
+            sourceMap: '<%= yeoman.dist %>/scripts/scripts.js.map',
+            sourceMapRoot: '/',
+            sourceMapPrefix: 1,
+            directive: '\/\/@ sourceMappingURL=',
+            script: '<%= yeoman.dist %>/scripts/scripts.js'
+        }
       }
     },
     copy: {
@@ -199,6 +206,7 @@ module.exports = function (grunt) {
             '*.{ico,txt}',
             '.htaccess',
             'components/**/*',
+            'scripts/**/*',
             'gallery/**/*',
             'images/{,*/}*.{gif,webp}'
           ]
@@ -240,7 +248,8 @@ module.exports = function (grunt) {
     'usemin',
     'ngmin',
     'inlineviews',
-    'uglify'
+    'uglify',
+    'sourcemapdirective'
   ]);
   
   grunt.registerTask('inlineviews', 'grab views and inline into script tags', function () {
@@ -263,6 +272,24 @@ module.exports = function (grunt) {
 	var output = grunt.file.read(config.output).replace(reBuildViews, views.join('\n\t'));
 	grunt.file.write(config.output, output);
 
+  });
+
+  grunt.registerTask('sourcemapdirective', 'grab the concat and minified source and append @sourceMappingURL', function() {
+    var config = grunt.config.get('uglify');
+    var opts = config.dist.options;
+    var script = grunt.file.read(opts.script);
+    var source = [
+        '\n',
+        opts.directive,
+        opts.script.replace('dist/scripts/',''),
+        '.map'
+    ].join('');
+
+    grunt.log.writeln('Appending sourcemap directive: ' + source.replace(/\n/, ''));
+
+    script = script + source;
+
+    grunt.file.write(opts.script, script);
   });
 
   grunt.registerTask('default', ['build']);
