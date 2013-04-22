@@ -24,7 +24,8 @@
     "matchdep": "~0.1.1",
     "grunt-google-cdn": "~0.1.0",
     "grunt-ngmin": "~0.0.1",
-    "grunt-jade": "~0.4.0"
+    "grunt-jade": "~0.4.0",
+    "grunt-angular-templates": "~0.3.1"
   },
   "engines": {
     "node": ">=0.8.0"

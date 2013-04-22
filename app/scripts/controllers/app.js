@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('fdApp').controller('AppCtrl', ['$scope', '$location', '$filter', 'Font', function ($scope, $location, $filter, Font) {
-    
+
     $scope.routeIs = function (route) {
         return $location.path() === route;
     };
