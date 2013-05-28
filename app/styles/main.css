@@ -269,11 +269,7 @@ body {
 header {
     padding: 15px;
     border-bottom: 3px solid #BB5316;
-<<<<<<< HEAD
-    background: #394C5F url(/assets/gr_pattern.gif) 0 0 repeat;
-=======
     background: #394C5F url(/images/gr_pattern.gif) 0 0 repeat;
->>>>>>> angular
 }
     header .container .logo {
         font-family: VomZom, Verdana, Arial, Helvetica, sans-serif;
@@ -352,10 +348,7 @@ section[role="banner"] {
         font-size: 3.846em; /* 50px */
         line-height: 2em;
         margin-bottom: 0;
-<<<<<<< HEAD
-=======
         text-shadow: 2px 2px 2px #394C5F;
->>>>>>> angular
     }
     section[role="banner"] aside {
         float: right;
@@ -399,11 +392,7 @@ section[role="banner"] {
         background: linear-gradient(top, #394c5f 0%,#28889f 100%); /* W3C */
     }
     .info01 {
-<<<<<<< HEAD
-        background: url(/assets/info.png) 0 6px no-repeat;
-=======
         background: url(/images/info.png) 0 6px no-repeat;
->>>>>>> angular
         font: normal 0.6em/1.333em Verdana, Arial, Helvetica, sans-serif;
         width: 16px;
         height: 20px;
