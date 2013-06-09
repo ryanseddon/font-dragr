@@ -197,7 +197,7 @@ module.exports = function (grunt) {
             sourceMap: '<%= yeoman.dist %>/scripts/scripts.js.map',
             sourceMapRoot: '/',
             sourceMapPrefix: 1,
-            directive: '\/\/@ sourceMappingURL=',
+            directive: '\/\/# sourceMappingURL=',
             script: '<%= yeoman.dist %>/scripts/scripts.js'
         }
       }
@@ -215,7 +215,7 @@ module.exports = function (grunt) {
             'components/**/*',
             'scripts/**/*',
             'gallery/**/*',
-            'images/{,*/}*.{gif,webp}'
+            'images/{,*/}*.{gif,webp,png}'
           ]
         }]
       }
@@ -246,12 +246,11 @@ module.exports = function (grunt) {
     'test',
     'jade',
     'useminPrepare',
-    'imagemin',
     'cssmin',
     'htmlmin',
     'concat',
     'copy',
-    'cdnify',
+    'imagemin',
     'usemin',
     'ngmin',
     'ngtemplates',
