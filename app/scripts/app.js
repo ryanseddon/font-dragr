@@ -7,7 +7,7 @@
 */
 'use strict';
 
-angular.module('fdApp', [])
+angular.module('fdApp', ['ngRoute'])
     .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
         $routeProvider
             .when('/', {

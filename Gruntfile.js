@@ -115,6 +115,17 @@ module.exports = function (grunt) {
         }
       }
     },
+    qsrev: {
+      dist: {
+        files: {
+          src: [
+            '<%= yeoman.dist %>/scripts/scripts.js',
+            '<%= yeoman.dist %>/styles/main.css'
+          ]
+        },
+        dest: '<%= yeoman.dist %>/index.html'
+      }
+    },
     useminPrepare: {
       html: '<%= yeoman.app %>/index.html',
       options: {
@@ -139,14 +150,14 @@ module.exports = function (grunt) {
       }
     },
     cssmin: {
-      dist: {
-        files: {
-          '<%= yeoman.dist %>/styles/main.css': [
-            '.tmp/styles/{,*/}*.css',
-            '<%= yeoman.app %>/styles/{,*/}*.css'
-          ]
-        }
-      }
+      // dist: {
+      //   files: {
+      //     '<%= yeoman.dist %>/styles/main.css': [
+      //       '.tmp/styles/{,*/}*.css',
+      //       '<%= yeoman.app %>/styles/{,*/}*.css'
+      //     ]
+      //   }
+      // }
     },
     htmlmin: {
       dist: {
@@ -189,6 +200,7 @@ module.exports = function (grunt) {
         files: {
           '<%= yeoman.dist %>/scripts/scripts.js': [
             '<%= yeoman.app %>/components/angular/angular.js',
+            '<%= yeoman.app %>/components/angular-route/angular-route.js',
             '<%= yeoman.app %>/scripts/**/*.js',
             '<%= ngtemplates.fdApp.dest %>'
           ]
@@ -220,6 +232,56 @@ module.exports = function (grunt) {
         }]
       }
     }
+  });
+
+// Create qsrev task to append md5 hash query string to css/js resources
+  var crypto = require('crypto');
+
+  function md5(filepath, algorithm, encoding) {
+    var hash = crypto.createHash(algorithm);
+    grunt.log.verbose.write('Hashing ' + filepath + '...');
+    hash.update(grunt.file.read(filepath));
+    return hash.digest(encoding);
+  }
+
+  grunt.registerMultiTask('qsrev', 'Add MD5 hash query string to CSS and JS resources', function() {
+
+    var options = this.options({
+      algorithm: 'md5',
+      length: 8
+    });
+    var files =  this.files[0].files.src,
+        hashes = {},
+        html = this.data.dest;
+
+    files.forEach(function(file) {
+        var reExtension = /\.[0-9a-z]+$/i,
+            reCSSJS = /^(css|js)$/i,
+            expanded = grunt.file.expand(file),
+            ext, hash, qs;
+
+        if(expanded.length === 1) {
+            ext = reExtension.exec(file)[0].slice(1);
+        }
+
+        if(reCSSJS.test(ext)) {
+            hash = md5(file, options.algorithm, 'hex');
+            qs = hash.slice(0, options.length);
+
+            hashes[ext] = qs;
+        }
+    });
+
+    var htmlContents = grunt.file.read(html),
+        reJS = /src\=\"scripts\/scripts\.js\"\>/,
+        reCSS = /href\=\"styles\/main\.css\"\>/;
+
+    htmlContents = htmlContents
+      .replace(reJS, ['src="scripts/scripts.js?v=', hashes.js, '">'].join(''))
+      .replace(reCSS, ['href="styles/main.css?v=', hashes.css, '">'].join(''));
+
+    grunt.file.write(html, htmlContents);
+    grunt.log.writeln('Update the HTML with new hash query strings');
   });
 
   grunt.renameTask('regarde', 'watch');
@@ -255,6 +317,7 @@ module.exports = function (grunt) {
     'ngmin',
     'ngtemplates',
     'uglify',
+    'qsrev',
     'sourcemapdirective'
   ]);
 

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('fdApp')
-    .filter('jsonfile', [function () {
+    .filter('jsonfile', function () {
         return function (data) {
             if(!data.error) {
                 var font = [],
@@ -27,4 +27,4 @@ angular.module('fdApp')
                 alert(data.error);
             }
         };
-}]);
+});

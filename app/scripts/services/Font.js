@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('fdApp')
-.factory('Font', [function() {
+.factory('Font', function() {
     return {
         activeFont: 'VomZom'
     };
-}]);
+});
