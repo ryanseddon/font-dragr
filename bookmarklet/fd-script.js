@@ -7,7 +7,7 @@
 var FD = FD || {};
 
 (function(win, doc){
-	
+
 	var html = '<div id=fontdragr><div class=logo>fd</div><label>Fonts:<select id=fd-fonts><option value=sans-serif>Drag and drop a font</select></label><label>Selector:<input id=fd-selector placeholder="e.g. body > p"></label><button id=fd-selector-btn>Apply</button><div id=fd-handle></div></div>',
 		body = doc.body,
 		div = doc.createElement( "div" ),
@@ -15,75 +15,75 @@ var FD = FD || {};
 		ss = doc.createElement( "style" ),
 		selector, selectorVal, fonts, button, handle, fontFaceStyle, currentFont, fontdragr, currentSelector,
 		breaker = {}, commands = { load: load };
-		
+
 	function setup() {
 		div.innerHTML = html;
-		
-		link.href="http://fontdragr.com/bookmarklet/style.css";
+
+		link.href="https://rawgithub.com/ryanseddon/font-dragr/master/bookmarklet/style.css";
 		link.rel = "stylesheet";
 		div.appendChild( link );
 		div.appendChild( ss );
 		div.id = "fontdragr_container";
-				
+
 		body.appendChild( div );
-		
+
 		fontdragr = doc.getElementById( "fontdragr" );
 		fonts = doc.getElementById( "fd-fonts" );
 		selector = doc.getElementById( "fd-selector-btn" );
 		selectorVal = doc.getElementById( "fd-selector" );
 		handle = doc.getElementById( "fd-handle" );
-		
+
 		attach( fonts, "change", changeFont, false );
 		attach( selector, "click", changeFont, false );
 		attach( handle, "click", toggle, false );
-		
+
 		attach( body, "drop", handleDrop, false );
 		attach( body, "dragenter", preventActions, false );
 		attach( body, "dragover", preventActions, false );
-		
+
 		//Load qwery as needed
 		if(!( "querySelectorAll" in doc )) {
 			var script = doc.createElement( "script" );
-			
-			script.src = "http://fontdragr.com/bookmarklet/qwery.js";
+
+			script.src = "https://rawgithub.com/ryanseddon/font-dragr/master/bookmarklet/qwery.js";
 			body.appendChild( script );
 		}
 		FD.ltIE9 = (function(){
 			var ie = document.createElement( "div" );
 			ie.innerHTML = "<!--[if lte IE 8]><i></i><![endif]-->";
-			return ( ie.getElementsByTagName( "i" ).length === 1 );         
+			return ( ie.getElementsByTagName( "i" ).length === 1 );
 		}());
 
 	}
-	
+
 	// DnD
 	function handleDrop( evt ) {
 		evt = evt || event;
-		
+
 		var dt = evt.dataTransfer,
 			// IE doesn't like anything other than "Text"
 			data = (( /*@cc_on!@*/0 ) ? dt.getData( "Text" ) : dt.getData( "text/plain" )),
 			files = dt.files || false,
 			count = files.length,
 			acceptedFileExtensions = /^.*\.(ttf|otf|woff)$/i;
-		
+
 		preventActions( evt );
-		
+
 		if( !!data ) {
 			parseDataFont( data ); // We have data parse it, else assume file drop
 		} else {
 			var file, droppedFullFileName, droppedFileName, reader,
 				url = window.URL || window.webkitURL || window.msURL || window.oURL,
 				objURL = url.createObjectURL || false;
-				
+
 			for ( var i = 0; i < count; i++ ) {
 				file = files[i];
 				droppedFullFileName = file.name;
-				
+
 				if(acceptedFileExtensions.test( droppedFullFileName )) {
 					droppedFileName = droppedFullFileName.replace( /\..+$/,"" ); // Removes file extension from name
 					droppedFileName = droppedFileName.replace( /\W+/g, "-" ); // Replace any non alpha numeric characters with -
-					
+
 					// If the browser supports referencing a file without having to load it into memory let's use it
 					if(objURL) {
 						buildFontListItem( {
@@ -95,82 +95,82 @@ var FD = FD || {};
 					} else {
 						reader = new FileReader();
 						reader.name = droppedFileName;
-						
-						/* 
+
+						/*
 						   Chrome 6 dev can't do DOM2 event based listeners on the FileReader object so fallback to DOM0
 						   http://code.google.com/p/chromium/issues/detail?id=48367
 						   reader.addEventListener("loadend", buildFontListItem, false);
 						*/
 						reader.onloadend = function( event ) { buildFontListItem( event ); };
-						reader.readAsDataURL( file ); 
-					} 
+						reader.readAsDataURL( file );
+					}
 				} else {
 					alert( "Invalid file extension. Will only accept ttf, otf or woff font files" );
 				}
 			}
 		}
-		
+
 		data = null;
 	}
-	
+
 	function buildFontListItem( event, name, size, data ) {
 		var styleRef = ss.sheet || ss.styleSheet;
-		
+
 		// If file system drag and drop we don't pass any arguments, we get info from the event.
 		if( !!event ) {
 			name = event.target.name;
 			data = event.target.result;
 		}
-		
+
 		// Dodgy fork because Chrome 6 dev doesn't add media type to base64 string when a dropped file(s) type isn't known
 		// http://code.google.com/p/chromium/issues/detail?id=48368
 		var dataURL = data.split( "base64" );
-		
+
 		if(!!~dataURL[0].indexOf( "application/octet-stream" )) {
 			dataURL[0] = "data:application/octet-stream;base64";
-			
+
 			data = dataURL[0] + dataURL[1];
 		}
-		
+
 		// Get font file and prepend it to stylsheet using @font-face rule
 		fontFaceStyle = "@font-face{font-family: "+name+"; src:url("+data+");}";
-		
+
 		if( styleRef.insertRule ) {
 			styleRef.insertRule( fontFaceStyle, 0 );
 		} else {
 			var styles = doc.createElement( "style" );
-			
+
 			// IE 8< need a new stylesheet for each font, otherwise browser will crash
 			body.appendChild( styles );
 			styles.styleSheet.cssText = fontFaceStyle;
 		}
-		
+
 		appendOptionElem(name);
-		
+
 		changeFont();
-		
+
 		data = null;
 		dataURL = null;
 	}
-	
+
 	function appendOptionElem(name, val) {
 		var option = document.createElement( "option" ),
 			selectLen = fonts.length;
-		
+
 		option.value = val ? val : name;
 		option.text = name;
 		option.style.fontFamily = name;
-		
+
 		try {
 			fonts.add( option, null ); // standards compliant; doesn't work in IE
 		} catch(ex) {
 			fonts.add( option ); // IE only
 		}
-		
+
 		fonts[selectLen].selected = true;
 		fonts.style.fontFamily = name;
 	}
-	
+
 	function changeFont(e) {
 		var font = fonts.value,
 			val = selectorVal.value,
@@ -179,10 +179,10 @@ var FD = FD || {};
 			getSel = ( isSel ) ? whichSel.createRange().text.toString() : whichSel().toString(),
 			// webkit throws exception when no selection is made and you try to access getRangeAt
 			range = ( isSel ) ? whichSel.createRange() : (getSel !== "") ? whichSel().getRangeAt( 0 ) : false;
-		
+
 		fonts.style.fontFamily = font;
 		currentFont = font;
-		
+
 		if( getSel !== "" ) {
 			if (isSel) {
 				range.execCommand( "fontName", false, font );
@@ -193,7 +193,7 @@ var FD = FD || {};
 				doc.execCommand( "fontName", false, font );
 				doc.designMode = "off";
 			}
-		} else if(val.substr(0, 1) == ':') { 
+		} else if(val.substr(0, 1) == ':') {
 			// Command found
 			runCMD(val.substr(1));
 		} else {
@@ -209,16 +209,16 @@ var FD = FD || {};
 			applySelector(val);
 		}
 	}
-	
+
 	function applySelector(selector) {
 		var selectorRule = selector || "body p";
-			
+
 		if( selectorRule !== "" && fonts.options.length > 1 ) { // If it's not empty and it's not a URL.
-			try {	
+			try {
 				var	curElems = ( doc.querySelectorAll ) ? doc.querySelectorAll( selectorRule ) : qwery( selectorRule ),
 					len = curElems.length,
 					isMultiElems = (len > 1);
-				
+
 				if( !isMultiElems ) {
 					curElems[0].style.fontFamily = currentFont;
 				} else {
@@ -226,9 +226,9 @@ var FD = FD || {};
 						curElems[len].style.fontFamily = currentFont;
 					}
 				}
-				
+
 				currentSelector = selectorRule;
-				
+
 			} catch( e ) {
 				alert( "'"+selectorRule+"' didn't find any elements to style. Try a simpler selector." );
 			}
@@ -236,38 +236,38 @@ var FD = FD || {};
 			alert( "You need to specify a selector and have at least one font" );
 		}
 	}
-	
+
 	function runCMD(cmd) {
 		var parts = [], fn;
 		parts = cmd.split(' ');
 		fn = parts.shift();
-		
+
 		// assume if parts is larger than service + font name that the font name has spaces
 		if(parts.length > 2) {
 			var tmp = parts.splice(1,parts.length);
-			
+
 			tmp = tmp.join(' ');
 			parts = [parts[0], tmp];
 		}
-		
+
 		return (commands[fn] || noop).apply(this, parts);
 	}
-	
+
 	function load(service, font, dontAppend) {
 		if(service === "gwf") {
 			// Google web fonts
-			
+
 			if(font != "All") {
 				var link = document.createElement("link"), len;
 				link.rel = "stylesheet";
-				link.href = "http://fonts.googleapis.com/css?family="+font;
+				link.href = "https://fonts.googleapis.com/css?family="+font;
 				link.type = "text/css";
-				
+
 				body.appendChild(link);
-				
+
 				if(!dontAppend) {
 					font = font.split( '|' );
-					
+
 					if(len = font.length, len > 1) {
 						for(var i = 0; i < len; i++) {
 							appendOptionElem(font[i]);
@@ -275,14 +275,14 @@ var FD = FD || {};
 					} else {
 						appendOptionElem(font[0]);
 					}
-				
+
 					selectorVal.value = currentSelector || "";
-					
+
 					changeFont();
 				}
 			} else {
 				// Load entire google fonts library
-				loadJSONP("http://dev.fontdragr.com/bookmarklet/gwf.js");
+				loadJSONP("https://rawgithub.com/ryanseddon/font-dragr/master/bookmarklet/gwf.js");
 			}
 		}
 	}
@@ -299,44 +299,44 @@ var FD = FD || {};
 		//fonts.innerHTML += "<optgroup label='Google Webfonts'>" + opts + "</optgroup>";
 		//fonts[fonts.length-1].selected = true;
 		//fonts.style.fontFamily = font;
-		
+
 		selectorVal.value = currentSelector || "";
 		load("gwf",font, true);
 		currentFont = font;
 		applySelector();
 		selectorVal.className = "";
 	}
-	
+
 	function toggle() {
 		var compStyle = parseInt(( window.getComputedStyle ? getComputedStyle( fontdragr, null ) : fontdragr.currentStyle )['height'],10);
-		
+
 		fontdragr.className = compStyle <= 15 ? "" : "fd-hidden";
 	}
-	
+
 	function parseDataFont( data ) {
 		// Make sure data being parsed is valid JSON
 		try {
 			data = JSON.parse( data );
-			
+
 			if( !data.error ) {
 				data.fontSize = Math.round( data.fontSize/1024 ) + "kb";
 				var fontFileName = data.fontName.split( "/" ).reverse()[0];
 					fontFileName = fontFileName.replace( /\..+$/, "" ); // Remove file extension
 					fontFileName = fontFileName.replace( /\W+/g, "-" ); // Replace any non alpha numeric characters with -
-					
+
 				var	fontFileNameChar = parseInt( fontFileName.charAt(0),10 );
-					
+
 				if( !isNaN( fontFileNameChar ) ) {
 					fontFileName = "fd"+fontFileName; // If font name starts with a number prepend 'fd'
 				}
-				
+
 				if( /*@cc_on!@*/0 && !!FD.ltIE9 ) {
 					// IE8 can't do base64 fonts but it can load cross domain fonts. Pass url instead.
 					data.fontDataURL = data.fontName;
 				} else {
 					data.fontDataURL = "data:application/octet-stream;base64," + data.fontDataURL;
 				}
-				
+
 				buildFontListItem( {
 					target: {
 						name: fontFileName,
@@ -351,11 +351,11 @@ var FD = FD || {};
 			alert("Data was not valid JSON.");
 		}
 	}
-	
+
 	//Utils
 	function preventActions( evt ) {
 		evt = evt || window.event;
-		
+
 		if( evt.stopPropagation && evt.preventDefault ) {
 			evt.stopPropagation();
 			evt.preventDefault();
@@ -392,10 +392,10 @@ var FD = FD || {};
 		}
 	};
 	function noop() {}
-	
+
 	// Bookmarklet tracking code
 	function gaTrack(g,h,i){function c(e,j){return e+Math.floor(Math.random()*(j-e));}var f=1000000000,k=c(f,9999999999),a=c(10000000,99999999),l=c(f,2147483647),b=(new Date()).getTime(),d=window.location,m=new Image(),n='http://www.google-analytics.com/__utm.gif?utmwv=1.3&utmn='+k+'&utmsr=-&utmsc=-&utmul=-&utmje=0&utmfl=-&utmdt=-&utmhn='+h+'&utmr='+d+'&utmp='+i+'&utmac='+g+'&utmcc=__utma%3D'+a+'.'+l+'.'+b+'.'+b+'.'+b+'.2%3B%2B__utmb%3D'+a+'%3B%2B__utmc%3D'+a+'%3B%2B__utmz%3D'+a+'.'+b+'.2.2.utmccn%3D(referral)%7Cutmcsr%3D'+d.host+'%7Cutmcct%3D'+d.pathname+'%7Cutmcmd%3Dreferral%3B%2B__utmv%3D'+a+'.-%3B';m.src=n;}gaTrack('UA-4638292-2','fontdragr.com','font dragr bookmarklet');
-	
+
 	window["FD"] = {
 		gwf: gwf
 	};
